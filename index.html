@@ -1,39 +1,394 @@
-<!DOCTYPE html>
+from pathlib import Path
 
-<!-- MathJax -->
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  };
-</script>
-<script
-  id="MathJax-script"
-  async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-
+index_html = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transformer Formal-Languages Wiki Entries</title>
 
-  <!-- MathJax -->
+  <!-- Markdown renderer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax configuration: must appear before MathJax script -->
   <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      startup: {
+        typeset: false
       }
     };
   </script>
   <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #222;
+      background: #fff;
+    }
+
+    h1 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    h2, h3 {
+      margin-top: 36px;
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", Consolas, Monaco, monospace;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+    }
+
+    ul {
+      padding-left: 24px;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f5f5f5;
+    }
+
+    blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 16px;
+      color: #555;
+      margin-left: 0;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .topbar a, .topbar button {
+      font: inherit;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      color: #222;
+      padding: 6px 10px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .topbar a:hover, .topbar button:hover {
+      background: #f0f0f0;
+      text-decoration: none;
+    }
+
+    .path {
+      font-size: 0.95rem;
+      color: #666;
+      word-break: break-all;
+    }
+
+    .error {
+      background: #fff3f3;
+      border: 1px solid #ffd0d0;
+      color: #8a1f1f;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .loading {
+      color: #666;
+    }
+
+    .frontmatter {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 16px 0 28px 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .frontmatter summary {
+      cursor: pointer;
+      color: #333;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="./">Home</a>
+    <a href="?page=indices/file_index.md">File Index</a>
+    <button id="backButton" type="button">Back</button>
+    <span class="path" id="currentPath"></span>
+  </div>
+
+  <main id="content">
+    <h1>Transformer Formal-Languages Wiki Entries</h1>
+
+    <p>
+      This page renders Markdown entries client-side. Open the
+      <a href="?page=indices/file_index.md">File Index</a> to browse the wiki.
+    </p>
+
+    <h2>Layout</h2>
+
+    <pre><code>objects/                    formal primitives and definitions
+constructions/feedforward/  feed-forward recipes
+constructions/attention/    attention recipes
+constructions/layer_norm/   layer-normalization and rounding recipes
+constructions/              cross-cutting constructions from the ICLR 2024 CoT paper
+results/                    theorem, lemma, proposition, and corollary pages
+examples/                   assembled example constructions
+indices/                    file index and cross-paper notes</code></pre>
+  </main>
+
+  <script>
+    const content = document.getElementById("content");
+    const currentPath = document.getElementById("currentPath");
+    const backButton = document.getElementById("backButton");
+
+    marked.setOptions({
+      gfm: true,
+      breaks: false,
+      mangle: false,
+      headerIds: true
+    });
+
+    backButton.addEventListener("click", () => {
+      history.back();
+    });
+
+    function getPageFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("page");
+    }
+
+    function normalizePath(path) {
+      return path
+        .replace(/^\.?\//, "")
+        .replace(/\\/g, "/");
+    }
+
+    function dirname(path) {
+      const normalized = normalizePath(path);
+      const idx = normalized.lastIndexOf("/");
+      return idx === -1 ? "" : normalized.slice(0, idx + 1);
+    }
+
+    function resolveRelativePath(baseFile, href) {
+      if (!baseFile) return normalizePath(href);
+
+      if (
+        href.startsWith("http://") ||
+        href.startsWith("https://") ||
+        href.startsWith("#") ||
+        href.startsWith("mailto:")
+      ) {
+        return href;
+      }
+
+      const baseDir = dirname(baseFile);
+      const stack = baseDir.split("/").filter(Boolean);
+
+      for (const part of href.split("/")) {
+        if (!part || part === ".") continue;
+        if (part === "..") stack.pop();
+        else stack.push(part);
+      }
+
+      return stack.join("/");
+    }
+
+    function stripFrontmatter(markdown) {
+      if (!markdown.startsWith("---")) {
+        return { frontmatter: "", body: markdown };
+      }
+
+      const end = markdown.indexOf("\n---", 3);
+      if (end === -1) {
+        return { frontmatter: "", body: markdown };
+      }
+
+      const frontmatter = markdown.slice(3, end).trim();
+      const body = markdown.slice(end + 4).replace(/^\s+/, "");
+      return { frontmatter, body };
+    }
+
+    function renderFrontmatter(frontmatter) {
+      if (!frontmatter) return "";
+      const escaped = frontmatter
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      return `
+        <details class="frontmatter">
+          <summary>Metadata</summary>
+          <pre><code>${escaped}</code></pre>
+        </details>
+      `;
+    }
+
+    async function typesetMath() {
+      if (!window.MathJax || !MathJax.typesetPromise) return;
+      await MathJax.typesetPromise([content]);
+    }
+
+    async function loadMarkdown(path, pushState = true) {
+      const normalizedPath = normalizePath(path);
+      currentPath.textContent = normalizedPath;
+      content.innerHTML = `<p class="loading">Loading ${normalizedPath}...</p>`;
+
+      try {
+        const response = await fetch(normalizedPath, { cache: "no-cache" });
+
+        if (!response.ok) {
+          throw new Error(`Could not fetch ${normalizedPath}: ${response.status} ${response.statusText}`);
+        }
+
+        const rawMarkdown = await response.text();
+        const { frontmatter, body } = stripFrontmatter(rawMarkdown);
+
+        content.innerHTML = renderFrontmatter(frontmatter) + marked.parse(body);
+
+        rewriteLocalLinks(normalizedPath);
+        await typesetMath();
+
+        if (pushState) {
+          const url = new URL(window.location);
+          url.searchParams.set("page", normalizedPath);
+          history.pushState({ page: normalizedPath }, "", url);
+        }
+      } catch (error) {
+        content.innerHTML = `
+          <div class="error">
+            <strong>Failed to load Markdown.</strong>
+            <p>${error.message}</p>
+            <p>
+              Check that the path exists in the published GitHub Pages site:
+              <code>${normalizedPath}</code>
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    function rewriteLocalLinks(currentFile) {
+      const links = content.querySelectorAll("a[href]");
+
+      links.forEach((link) => {
+        const rawHref = link.getAttribute("href");
+
+        if (
+          rawHref.startsWith("http://") ||
+          rawHref.startsWith("https://") ||
+          rawHref.startsWith("mailto:") ||
+          rawHref.startsWith("#")
+        ) {
+          return;
+        }
+
+        const [pathPart, hashPart] = rawHref.split("#");
+        const resolvedPath = resolveRelativePath(currentFile, pathPart);
+        const hash = hashPart ? `#${hashPart}` : "";
+
+        if (resolvedPath.endsWith(".md")) {
+          link.setAttribute("href", `?page=${encodeURIComponent(resolvedPath)}${hash}`);
+          link.addEventListener("click", async (event) => {
+            event.preventDefault();
+            await loadMarkdown(resolvedPath, true);
+
+            if (hash) {
+              const target = document.querySelector(hash);
+              if (target) target.scrollIntoView();
+            }
+          });
+        } else {
+          link.setAttribute("href", resolvedPath + hash);
+        }
+      });
+    }
+
+    window.addEventListener("popstate", (event) => {
+      const page = event.state?.page || getPageFromURL();
+      if (page) {
+        loadMarkdown(page, false);
+      } else {
+        location.href = location.pathname;
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const page = getPageFromURL();
+      if (page) {
+        loadMarkdown(page, false);
+      }
+    });
+  </script>
+</body>
+</html>
+'''
+
+path = Path("/mnt/data/index_option_b.html")
+path.write_text(index_html, encoding="utf-8")
+path.as_posix()
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     async>
   </script>
