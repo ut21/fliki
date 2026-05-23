@@ -181,6 +181,26 @@
     <span class="path" id="currentPath"></span>
   </div>
 
+  <main id="content">
+    <h1>Transformer Formal-Languages Wiki Entries</h1>
+
+    <p>
+      This page renders Markdown entries client-side. Open the
+      <a href="?page=indices/file_index.md">File Index</a> to browse the wiki.
+    </p>
+
+    <h2>Layout</h2>
+
+    <pre><code>objects/                    formal primitives and definitions
+constructions/feedforward/  feed-forward recipes
+constructions/attention/    attention recipes
+constructions/layer_norm/   layer-normalization and rounding recipes
+constructions/              cross-cutting constructions from the ICLR 2024 CoT paper
+results/                    theorem, lemma, proposition, and corollary pages
+examples/                   assembled example constructions
+indices/                    file index and cross-paper notes</code></pre>
+  </main>
+
   <script>
     const content = document.getElementById("content");
     const currentPath = document.getElementById("currentPath");
@@ -461,155 +481,5 @@
       }
     });
   </script>
-</body>
-</html>
-      line-height: 1.7;
-      max-width: 980px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #222;
-      background: #fff;
-    }
-
-    h1 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-    }
-
-    h2, h3 {
-      margin-top: 36px;
-    }
-
-    code, pre {
-      font-family: "SFMono-Regular", Consolas, Monaco, monospace;
-    }
-
-    pre {
-      background: #f5f5f5;
-      padding: 16px;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-
-    code {
-      background: #f5f5f5;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    pre code {
-      background: transparent;
-      padding: 0;
-    }
-
-    ul {
-      padding-left: 24px;
-    }
-
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px 10px;
-      vertical-align: top;
-    }
-
-    th {
-      background: #f5f5f5;
-    }
-
-    blockquote {
-      border-left: 4px solid #ddd;
-      padding-left: 16px;
-      color: #555;
-      margin-left: 0;
-    }
-
-    .topbar {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .topbar a, .topbar button {
-      font: inherit;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background: #fafafa;
-      color: #222;
-      padding: 6px 10px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .topbar a:hover, .topbar button:hover {
-      background: #f0f0f0;
-      text-decoration: none;
-    }
-
-    .path {
-      font-size: 0.95rem;
-      color: #666;
-      word-break: break-all;
-    }
-
-    .error {
-      background: #fff3f3;
-      border: 1px solid #ffd0d0;
-      color: #8a1f1f;
-      padding: 16px;
-      border-radius: 8px;
-    }
-
-    .loading {
-      color: #666;
-    }
-
-    .frontmatter {
-      background: #fafafa;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin: 16px 0 28px 0;
-      color: #555;
-      font-size: 0.95rem;
-    }
-
-    .frontmatter summary {
-      cursor: pointer;
-      color: #333;
-      font-weight: 600;
-    }
-
-    .mathjax-display {
-      margin: 1em 0;
-      overflow-x: auto;
-    }
-  </style>
-</head>
-<body>
-  <div class="topbar">
-    <a href="./">Home</a>
-    <a href="?page=indices/file_index.md">File Index</a>
-    <button id="backButton" type="button">Back</button>
-    <span class="path" id="currentPath"></span>
-  </div>
 </body>
 </html>
