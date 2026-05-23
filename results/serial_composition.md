@@ -3,6 +3,8 @@ title: Serial Composition
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Lemma 8.2"
+assumptions:
+  - transformer-layer
 depends_on:
   - ../objects/transformer_layer.md
 ---

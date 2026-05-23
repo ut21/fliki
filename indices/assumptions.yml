@@ -1,0 +1,84 @@
+decoder-only:
+  label: Decoder-only
+  page: objects/decoder_only_transformer.md
+  category: architecture
+cot-decoding:
+  label: Chain-of-thought decoding
+  page: objects/cot_decoding_class.md
+  category: decoding
+log-precision:
+  label: Log precision
+  page: objects/log_precision_transformer.md
+  category: precision
+projected-pre-norm:
+  label: Projected pre-norm
+  page: objects/projected_pre_norm.md
+  category: normalization
+multi-pre-norm:
+  label: Multi-pre-norm
+  page: objects/multi_pre_norm.md
+  category: normalization
+standard-layer-normalization:
+  label: Standard layer normalization
+  page: objects/standard_layer_normalization.md
+  category: normalization
+epsilon-positive-layer-norm:
+  label: Layer norm with epsilon > 0
+  page: objects/standard_layer_normalization.md
+  category: normalization
+strict-causal-attention:
+  label: Strict causal attention
+  page: objects/strict_causal_attention.md
+  category: attention
+saturated-attention:
+  label: Saturated attention
+  page: objects/saturated_attention.md
+  category: attention
+hardmax-attention:
+  label: Hard attention
+  page: objects/hardmax.md
+  category: attention
+softmax-attention:
+  label: Softmax attention
+  page: objects/attention_weighting_function.md
+  category: attention
+self-attention:
+  label: Self-attention layer
+  page: objects/self_attention.md
+  category: layer
+relu-ffn:
+  label: ReLU feed-forward network
+  page: objects/feed_forward_network.md
+  category: layer
+residual-connections:
+  label: Residual connections
+  page: objects/residual_stream.md
+  category: layer
+transformer:
+  label: Transformer
+  page: objects/transformer.md
+  category: architecture
+transformer-layer:
+  label: Transformer layer
+  page: objects/transformer_layer.md
+  category: layer
+bounded-positional-encodings:
+  label: Bounded positional encodings
+  page: objects/positional_encodings.md
+  category: embeddings
+tieless-score-gap:
+  label: Tieless score gap
+  page: objects/tieless_scores.md
+  category: attention
+no-layer-normalization:
+  label: No layer normalization
+  page: objects/layer_norm.md
+  category: normalization
+length-preserving:
+  label: Length-preserving map
+  page: objects/length_preserving_map.md
+  category: map
+linear-coordinate-maps:
+  label: Linear coordinate maps
+  page: objects/residual_stream.md
+  category: construction

@@ -3,6 +3,8 @@ title: Error Analysis of Attention
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Proposition 7.3"
+assumptions:
+  - self-attention
 depends_on:
   - ../objects/self_attention.md
 ---

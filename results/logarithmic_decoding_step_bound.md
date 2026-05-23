@@ -3,6 +3,10 @@ title: Logarithmic Decoding Step Bound
 type: result
 paper: Merrill and Sabharwal, "The Expressive Power of Transformers with Chain of Thought", ICLR 2024
 source: Sections 1.1 and 4
+assumptions:
+  - cot-decoding
+  - decoder-only
+  - log-precision
 depends_on:
   - ../objects/cot_decoding_class.md
   - ../results/space_upper_bound.md

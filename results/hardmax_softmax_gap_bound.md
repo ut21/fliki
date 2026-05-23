@@ -3,6 +3,10 @@ title: Hardmax--Softmax Gap Bound
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Lemma 5.3"
+assumptions:
+  - tieless-score-gap
+  - hardmax-attention
+  - softmax-attention
 depends_on:
   - ../objects/tieless_scores.md
 ---

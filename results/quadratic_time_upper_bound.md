@@ -7,6 +7,10 @@ aliases:
   - Theorem 3
   - time upper bound
   - CoT time simulation
+assumptions:
+  - cot-decoding
+  - decoder-only
+  - log-precision
 depends_on:
   - ../objects/cot_decoding_class.md
   - ../objects/log_precision_transformer.md

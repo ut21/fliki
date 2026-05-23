@@ -6,6 +6,12 @@ source: Section 3.3, Theorem 2
 aliases:
   - Theorem 2
   - real-time Turing machine simulation
+assumptions:
+  - decoder-only
+  - log-precision
+  - projected-pre-norm
+  - strict-causal-attention
+  - saturated-attention
 depends_on:
   - ../objects/multitape_turing_machine.md
   - ../objects/layer_norm_hash.md

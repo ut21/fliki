@@ -7,6 +7,27 @@ aliases:
   - Theorem 1
   - regular language recognition
   - automaton simulation
+assumptions:
+  - decoder-only
+  - log-precision
+  - projected-pre-norm
+  - saturated-attention
+assumption_sets:
+  theorem_statement:
+    label: Theorem statement
+    assumptions:
+      - decoder-only
+      - log-precision
+      - projected-pre-norm
+      - strict-causal-attention
+      - saturated-attention
+  proof_note:
+    label: Proof note
+    assumptions:
+      - decoder-only
+      - log-precision
+      - projected-pre-norm
+      - saturated-attention
 depends_on:
   - ../objects/deterministic_finite_state_automaton.md
   - ../objects/layer_norm_hash.md

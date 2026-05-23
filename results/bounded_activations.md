@@ -3,6 +3,10 @@ title: Bounded Activations
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Proposition 7.1"
+assumptions:
+  - transformer
+  - bounded-positional-encodings
+  - standard-layer-normalization
 depends_on:
   - ../objects/transformer.md
   - ../objects/standard_layer_normalization.md

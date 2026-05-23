@@ -7,6 +7,22 @@ aliases:
   - main complexity sandwich
   - Equation 1
   - main result
+assumption_sets:
+  lower_bound:
+    label: Lower bound
+    assumptions:
+      - cot-decoding
+      - decoder-only
+      - log-precision
+      - projected-pre-norm
+      - strict-causal-attention
+      - saturated-attention
+  upper_bounds:
+    label: Upper bounds
+    assumptions:
+      - cot-decoding
+      - decoder-only
+      - log-precision
 depends_on:
   - ../objects/cot_decoding_class.md
   - ../results/time_lower_bound.md

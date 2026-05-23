@@ -1,0 +1,1625 @@
+{
+  "generated_at": "2026-05-23T03:30:20.952Z",
+  "assumptions": {
+    "decoder-only": {
+      "id": "decoder-only",
+      "label": "Decoder-only",
+      "page": "objects/decoder_only_transformer.md",
+      "category": "architecture"
+    },
+    "cot-decoding": {
+      "id": "cot-decoding",
+      "label": "Chain-of-thought decoding",
+      "page": "objects/cot_decoding_class.md",
+      "category": "decoding"
+    },
+    "log-precision": {
+      "id": "log-precision",
+      "label": "Log precision",
+      "page": "objects/log_precision_transformer.md",
+      "category": "precision"
+    },
+    "projected-pre-norm": {
+      "id": "projected-pre-norm",
+      "label": "Projected pre-norm",
+      "page": "objects/projected_pre_norm.md",
+      "category": "normalization"
+    },
+    "multi-pre-norm": {
+      "id": "multi-pre-norm",
+      "label": "Multi-pre-norm",
+      "page": "objects/multi_pre_norm.md",
+      "category": "normalization"
+    },
+    "standard-layer-normalization": {
+      "id": "standard-layer-normalization",
+      "label": "Standard layer normalization",
+      "page": "objects/standard_layer_normalization.md",
+      "category": "normalization"
+    },
+    "epsilon-positive-layer-norm": {
+      "id": "epsilon-positive-layer-norm",
+      "label": "Layer norm with epsilon > 0",
+      "page": "objects/standard_layer_normalization.md",
+      "category": "normalization"
+    },
+    "strict-causal-attention": {
+      "id": "strict-causal-attention",
+      "label": "Strict causal attention",
+      "page": "objects/strict_causal_attention.md",
+      "category": "attention"
+    },
+    "saturated-attention": {
+      "id": "saturated-attention",
+      "label": "Saturated attention",
+      "page": "objects/saturated_attention.md",
+      "category": "attention"
+    },
+    "hardmax-attention": {
+      "id": "hardmax-attention",
+      "label": "Hard attention",
+      "page": "objects/hardmax.md",
+      "category": "attention"
+    },
+    "softmax-attention": {
+      "id": "softmax-attention",
+      "label": "Softmax attention",
+      "page": "objects/attention_weighting_function.md",
+      "category": "attention"
+    },
+    "self-attention": {
+      "id": "self-attention",
+      "label": "Self-attention layer",
+      "page": "objects/self_attention.md",
+      "category": "layer"
+    },
+    "relu-ffn": {
+      "id": "relu-ffn",
+      "label": "ReLU feed-forward network",
+      "page": "objects/feed_forward_network.md",
+      "category": "layer"
+    },
+    "residual-connections": {
+      "id": "residual-connections",
+      "label": "Residual connections",
+      "page": "objects/residual_stream.md",
+      "category": "layer"
+    },
+    "transformer": {
+      "id": "transformer",
+      "label": "Transformer",
+      "page": "objects/transformer.md",
+      "category": "architecture"
+    },
+    "transformer-layer": {
+      "id": "transformer-layer",
+      "label": "Transformer layer",
+      "page": "objects/transformer_layer.md",
+      "category": "layer"
+    },
+    "bounded-positional-encodings": {
+      "id": "bounded-positional-encodings",
+      "label": "Bounded positional encodings",
+      "page": "objects/positional_encodings.md",
+      "category": "embeddings"
+    },
+    "tieless-score-gap": {
+      "id": "tieless-score-gap",
+      "label": "Tieless score gap",
+      "page": "objects/tieless_scores.md",
+      "category": "attention"
+    },
+    "no-layer-normalization": {
+      "id": "no-layer-normalization",
+      "label": "No layer normalization",
+      "page": "objects/layer_norm.md",
+      "category": "normalization"
+    },
+    "length-preserving": {
+      "id": "length-preserving",
+      "label": "Length-preserving map",
+      "page": "objects/length_preserving_map.md",
+      "category": "map"
+    },
+    "linear-coordinate-maps": {
+      "id": "linear-coordinate-maps",
+      "label": "Linear coordinate maps",
+      "page": "objects/residual_stream.md",
+      "category": "construction"
+    }
+  },
+  "pages": {
+    "results/bounded_activations.md": {
+      "title": "Bounded Activations",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "bounded-positional-encodings",
+          "label": "Bounded positional encodings",
+          "page": "objects/positional_encodings.md",
+          "category": "embeddings"
+        },
+        {
+          "id": "standard-layer-normalization",
+          "label": "Standard layer normalization",
+          "page": "objects/standard_layer_normalization.md",
+          "category": "normalization"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "bounded-positional-encodings",
+          "label": "Bounded positional encodings",
+          "page": "objects/positional_encodings.md",
+          "category": "embeddings"
+        },
+        {
+          "id": "standard-layer-normalization",
+          "label": "Standard layer normalization",
+          "page": "objects/standard_layer_normalization.md",
+          "category": "normalization"
+        }
+      ]
+    },
+    "results/cot_sandwich_theorem.md": {
+      "title": "CoT Sandwich Theorem",
+      "type": "result",
+      "assumptions": [],
+      "assumption_sets": {
+        "lower_bound": {
+          "label": "Lower bound",
+          "assumptions": [
+            {
+              "id": "cot-decoding",
+              "label": "Chain-of-thought decoding",
+              "page": "objects/cot_decoding_class.md",
+              "category": "decoding"
+            },
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            },
+            {
+              "id": "projected-pre-norm",
+              "label": "Projected pre-norm",
+              "page": "objects/projected_pre_norm.md",
+              "category": "normalization"
+            },
+            {
+              "id": "strict-causal-attention",
+              "label": "Strict causal attention",
+              "page": "objects/strict_causal_attention.md",
+              "category": "attention"
+            },
+            {
+              "id": "saturated-attention",
+              "label": "Saturated attention",
+              "page": "objects/saturated_attention.md",
+              "category": "attention"
+            }
+          ]
+        },
+        "upper_bounds": {
+          "label": "Upper bounds",
+          "assumptions": [
+            {
+              "id": "cot-decoding",
+              "label": "Chain-of-thought decoding",
+              "page": "objects/cot_decoding_class.md",
+              "category": "decoding"
+            },
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            }
+          ]
+        }
+      },
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ]
+    },
+    "results/error_analysis_attention.md": {
+      "title": "Error Analysis of Attention",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "self-attention",
+          "label": "Self-attention layer",
+          "page": "objects/self_attention.md",
+          "category": "layer"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "self-attention",
+          "label": "Self-attention layer",
+          "page": "objects/self_attention.md",
+          "category": "layer"
+        }
+      ]
+    },
+    "results/error_analysis_ffnn.md": {
+      "title": "Error Analysis of ReLU FFNs",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "relu-ffn",
+          "label": "ReLU feed-forward network",
+          "page": "objects/feed_forward_network.md",
+          "category": "layer"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "relu-ffn",
+          "label": "ReLU feed-forward network",
+          "page": "objects/feed_forward_network.md",
+          "category": "layer"
+        }
+      ]
+    },
+    "results/error_analysis_layer_normalization.md": {
+      "title": "Error Analysis of Layer Normalization",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "standard-layer-normalization",
+          "label": "Standard layer normalization",
+          "page": "objects/standard_layer_normalization.md",
+          "category": "normalization"
+        },
+        {
+          "id": "epsilon-positive-layer-norm",
+          "label": "Layer norm with epsilon > 0",
+          "page": "objects/standard_layer_normalization.md",
+          "category": "normalization"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "standard-layer-normalization",
+          "label": "Standard layer normalization",
+          "page": "objects/standard_layer_normalization.md",
+          "category": "normalization"
+        },
+        {
+          "id": "epsilon-positive-layer-norm",
+          "label": "Layer norm with epsilon > 0",
+          "page": "objects/standard_layer_normalization.md",
+          "category": "normalization"
+        }
+      ]
+    },
+    "results/error_analysis_residual_connections.md": {
+      "title": "Error Analysis of Residual Connections",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "residual-connections",
+          "label": "Residual connections",
+          "page": "objects/residual_stream.md",
+          "category": "layer"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "residual-connections",
+          "label": "Residual connections",
+          "page": "objects/residual_stream.md",
+          "category": "layer"
+        }
+      ]
+    },
+    "results/hardmax_softmax_gap_bound.md": {
+      "title": "Hardmax--Softmax Gap Bound",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "tieless-score-gap",
+          "label": "Tieless score gap",
+          "page": "objects/tieless_scores.md",
+          "category": "attention"
+        },
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        },
+        {
+          "id": "softmax-attention",
+          "label": "Softmax attention",
+          "page": "objects/attention_weighting_function.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "tieless-score-gap",
+          "label": "Tieless score gap",
+          "page": "objects/tieless_scores.md",
+          "category": "attention"
+        },
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        },
+        {
+          "id": "softmax-attention",
+          "label": "Softmax attention",
+          "page": "objects/attention_weighting_function.md",
+          "category": "attention"
+        }
+      ]
+    },
+    "results/linear_decoding_step_bounds.md": {
+      "title": "Linear Decoding Step Bounds",
+      "type": "result",
+      "assumptions": [],
+      "assumption_sets": {
+        "lower_bound": {
+          "label": "Lower bound",
+          "assumptions": [
+            {
+              "id": "cot-decoding",
+              "label": "Chain-of-thought decoding",
+              "page": "objects/cot_decoding_class.md",
+              "category": "decoding"
+            },
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            },
+            {
+              "id": "projected-pre-norm",
+              "label": "Projected pre-norm",
+              "page": "objects/projected_pre_norm.md",
+              "category": "normalization"
+            },
+            {
+              "id": "strict-causal-attention",
+              "label": "Strict causal attention",
+              "page": "objects/strict_causal_attention.md",
+              "category": "attention"
+            },
+            {
+              "id": "saturated-attention",
+              "label": "Saturated attention",
+              "page": "objects/saturated_attention.md",
+              "category": "attention"
+            }
+          ]
+        },
+        "upper_bounds": {
+          "label": "Upper bounds",
+          "assumptions": [
+            {
+              "id": "cot-decoding",
+              "label": "Chain-of-thought decoding",
+              "page": "objects/cot_decoding_class.md",
+              "category": "decoding"
+            },
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            }
+          ]
+        }
+      },
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ]
+    },
+    "results/logarithmic_decoding_step_bound.md": {
+      "title": "Logarithmic Decoding Step Bound",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        }
+      ]
+    },
+    "results/multi_pre_norm_simulation_by_projected_pre_norm.md": {
+      "title": "Multi-Pre-Norm Simulation by Projected Pre-Norm",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "multi-pre-norm",
+          "label": "Multi-pre-norm",
+          "page": "objects/multi_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "multi-pre-norm",
+          "label": "Multi-pre-norm",
+          "page": "objects/multi_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        }
+      ]
+    },
+    "results/parallel_composition.md": {
+      "title": "Parallel Composition",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "no-layer-normalization",
+          "label": "No layer normalization",
+          "page": "objects/layer_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "length-preserving",
+          "label": "Length-preserving map",
+          "page": "objects/length_preserving_map.md",
+          "category": "map"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "no-layer-normalization",
+          "label": "No layer normalization",
+          "page": "objects/layer_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "length-preserving",
+          "label": "Length-preserving map",
+          "page": "objects/length_preserving_map.md",
+          "category": "map"
+        }
+      ]
+    },
+    "results/polynomial_decoding_equals_p.md": {
+      "title": "Polynomial Decoding Equals P",
+      "type": "result",
+      "assumptions": [],
+      "assumption_sets": {
+        "lower_bound": {
+          "label": "Lower bound",
+          "assumptions": [
+            {
+              "id": "cot-decoding",
+              "label": "Chain-of-thought decoding",
+              "page": "objects/cot_decoding_class.md",
+              "category": "decoding"
+            },
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            },
+            {
+              "id": "projected-pre-norm",
+              "label": "Projected pre-norm",
+              "page": "objects/projected_pre_norm.md",
+              "category": "normalization"
+            },
+            {
+              "id": "strict-causal-attention",
+              "label": "Strict causal attention",
+              "page": "objects/strict_causal_attention.md",
+              "category": "attention"
+            },
+            {
+              "id": "saturated-attention",
+              "label": "Saturated attention",
+              "page": "objects/saturated_attention.md",
+              "category": "attention"
+            }
+          ]
+        },
+        "upper_bound": {
+          "label": "Upper bound",
+          "assumptions": [
+            {
+              "id": "cot-decoding",
+              "label": "Chain-of-thought decoding",
+              "page": "objects/cot_decoding_class.md",
+              "category": "decoding"
+            },
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            }
+          ]
+        }
+      },
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ]
+    },
+    "results/quadratic_time_upper_bound.md": {
+      "title": "Quadratic Time Upper Bound",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        }
+      ]
+    },
+    "results/regular_language_recognition_with_linear_decoding.md": {
+      "title": "Regular Language Recognition with Linear Decoding",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {
+        "theorem_statement": {
+          "label": "Theorem statement",
+          "assumptions": [
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            },
+            {
+              "id": "projected-pre-norm",
+              "label": "Projected pre-norm",
+              "page": "objects/projected_pre_norm.md",
+              "category": "normalization"
+            },
+            {
+              "id": "strict-causal-attention",
+              "label": "Strict causal attention",
+              "page": "objects/strict_causal_attention.md",
+              "category": "attention"
+            },
+            {
+              "id": "saturated-attention",
+              "label": "Saturated attention",
+              "page": "objects/saturated_attention.md",
+              "category": "attention"
+            }
+          ]
+        },
+        "proof_note": {
+          "label": "Proof note",
+          "assumptions": [
+            {
+              "id": "decoder-only",
+              "label": "Decoder-only",
+              "page": "objects/decoder_only_transformer.md",
+              "category": "architecture"
+            },
+            {
+              "id": "log-precision",
+              "label": "Log precision",
+              "page": "objects/log_precision_transformer.md",
+              "category": "precision"
+            },
+            {
+              "id": "projected-pre-norm",
+              "label": "Projected pre-norm",
+              "page": "objects/projected_pre_norm.md",
+              "category": "normalization"
+            },
+            {
+              "id": "saturated-attention",
+              "label": "Saturated attention",
+              "page": "objects/saturated_attention.md",
+              "category": "attention"
+            }
+          ]
+        }
+      },
+      "effective_assumptions": [
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        }
+      ]
+    },
+    "results/routing_lemma.md": {
+      "title": "Routing Lemma",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "relu-ffn",
+          "label": "ReLU feed-forward network",
+          "page": "objects/feed_forward_network.md",
+          "category": "layer"
+        },
+        {
+          "id": "self-attention",
+          "label": "Self-attention layer",
+          "page": "objects/self_attention.md",
+          "category": "layer"
+        },
+        {
+          "id": "linear-coordinate-maps",
+          "label": "Linear coordinate maps",
+          "page": "objects/residual_stream.md",
+          "category": "construction"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "relu-ffn",
+          "label": "ReLU feed-forward network",
+          "page": "objects/feed_forward_network.md",
+          "category": "layer"
+        },
+        {
+          "id": "self-attention",
+          "label": "Self-attention layer",
+          "page": "objects/self_attention.md",
+          "category": "layer"
+        },
+        {
+          "id": "linear-coordinate-maps",
+          "label": "Linear coordinate maps",
+          "page": "objects/residual_stream.md",
+          "category": "construction"
+        }
+      ]
+    },
+    "results/serial_composition.md": {
+      "title": "Serial Composition",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "transformer-layer",
+          "label": "Transformer layer",
+          "page": "objects/transformer_layer.md",
+          "category": "layer"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "transformer-layer",
+          "label": "Transformer layer",
+          "page": "objects/transformer_layer.md",
+          "category": "layer"
+        }
+      ]
+    },
+    "results/space_upper_bound.md": {
+      "title": "Space Upper Bound",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        }
+      ]
+    },
+    "results/time_lower_bound.md": {
+      "title": "Time Lower Bound",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "cot-decoding",
+          "label": "Chain-of-thought decoding",
+          "page": "objects/cot_decoding_class.md",
+          "category": "decoding"
+        },
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ]
+    },
+    "results/turing_machine_simulation.md": {
+      "title": "Turing Machine Simulation",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "decoder-only",
+          "label": "Decoder-only",
+          "page": "objects/decoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "log-precision",
+          "label": "Log precision",
+          "page": "objects/log_precision_transformer.md",
+          "category": "precision"
+        },
+        {
+          "id": "projected-pre-norm",
+          "label": "Projected pre-norm",
+          "page": "objects/projected_pre_norm.md",
+          "category": "normalization"
+        },
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ]
+    }
+  },
+  "by_assumption": {
+    "transformer": {
+      "id": "transformer",
+      "label": "Transformer",
+      "page": "objects/transformer.md",
+      "category": "architecture",
+      "results": [
+        {
+          "title": "Bounded Activations",
+          "path": "results/bounded_activations.md"
+        },
+        {
+          "title": "Parallel Composition",
+          "path": "results/parallel_composition.md"
+        }
+      ]
+    },
+    "bounded-positional-encodings": {
+      "id": "bounded-positional-encodings",
+      "label": "Bounded positional encodings",
+      "page": "objects/positional_encodings.md",
+      "category": "embeddings",
+      "results": [
+        {
+          "title": "Bounded Activations",
+          "path": "results/bounded_activations.md"
+        }
+      ]
+    },
+    "standard-layer-normalization": {
+      "id": "standard-layer-normalization",
+      "label": "Standard layer normalization",
+      "page": "objects/standard_layer_normalization.md",
+      "category": "normalization",
+      "results": [
+        {
+          "title": "Bounded Activations",
+          "path": "results/bounded_activations.md"
+        },
+        {
+          "title": "Error Analysis of Layer Normalization",
+          "path": "results/error_analysis_layer_normalization.md"
+        }
+      ]
+    },
+    "cot-decoding": {
+      "id": "cot-decoding",
+      "label": "Chain-of-thought decoding",
+      "page": "objects/cot_decoding_class.md",
+      "category": "decoding",
+      "results": [
+        {
+          "title": "CoT Sandwich Theorem",
+          "path": "results/cot_sandwich_theorem.md"
+        },
+        {
+          "title": "Linear Decoding Step Bounds",
+          "path": "results/linear_decoding_step_bounds.md"
+        },
+        {
+          "title": "Logarithmic Decoding Step Bound",
+          "path": "results/logarithmic_decoding_step_bound.md"
+        },
+        {
+          "title": "Polynomial Decoding Equals P",
+          "path": "results/polynomial_decoding_equals_p.md"
+        },
+        {
+          "title": "Quadratic Time Upper Bound",
+          "path": "results/quadratic_time_upper_bound.md"
+        },
+        {
+          "title": "Space Upper Bound",
+          "path": "results/space_upper_bound.md"
+        },
+        {
+          "title": "Time Lower Bound",
+          "path": "results/time_lower_bound.md"
+        }
+      ]
+    },
+    "decoder-only": {
+      "id": "decoder-only",
+      "label": "Decoder-only",
+      "page": "objects/decoder_only_transformer.md",
+      "category": "architecture",
+      "results": [
+        {
+          "title": "CoT Sandwich Theorem",
+          "path": "results/cot_sandwich_theorem.md"
+        },
+        {
+          "title": "Linear Decoding Step Bounds",
+          "path": "results/linear_decoding_step_bounds.md"
+        },
+        {
+          "title": "Logarithmic Decoding Step Bound",
+          "path": "results/logarithmic_decoding_step_bound.md"
+        },
+        {
+          "title": "Polynomial Decoding Equals P",
+          "path": "results/polynomial_decoding_equals_p.md"
+        },
+        {
+          "title": "Quadratic Time Upper Bound",
+          "path": "results/quadratic_time_upper_bound.md"
+        },
+        {
+          "title": "Regular Language Recognition with Linear Decoding",
+          "path": "results/regular_language_recognition_with_linear_decoding.md"
+        },
+        {
+          "title": "Space Upper Bound",
+          "path": "results/space_upper_bound.md"
+        },
+        {
+          "title": "Time Lower Bound",
+          "path": "results/time_lower_bound.md"
+        },
+        {
+          "title": "Turing Machine Simulation",
+          "path": "results/turing_machine_simulation.md"
+        }
+      ]
+    },
+    "log-precision": {
+      "id": "log-precision",
+      "label": "Log precision",
+      "page": "objects/log_precision_transformer.md",
+      "category": "precision",
+      "results": [
+        {
+          "title": "CoT Sandwich Theorem",
+          "path": "results/cot_sandwich_theorem.md"
+        },
+        {
+          "title": "Linear Decoding Step Bounds",
+          "path": "results/linear_decoding_step_bounds.md"
+        },
+        {
+          "title": "Logarithmic Decoding Step Bound",
+          "path": "results/logarithmic_decoding_step_bound.md"
+        },
+        {
+          "title": "Polynomial Decoding Equals P",
+          "path": "results/polynomial_decoding_equals_p.md"
+        },
+        {
+          "title": "Quadratic Time Upper Bound",
+          "path": "results/quadratic_time_upper_bound.md"
+        },
+        {
+          "title": "Regular Language Recognition with Linear Decoding",
+          "path": "results/regular_language_recognition_with_linear_decoding.md"
+        },
+        {
+          "title": "Space Upper Bound",
+          "path": "results/space_upper_bound.md"
+        },
+        {
+          "title": "Time Lower Bound",
+          "path": "results/time_lower_bound.md"
+        },
+        {
+          "title": "Turing Machine Simulation",
+          "path": "results/turing_machine_simulation.md"
+        }
+      ]
+    },
+    "projected-pre-norm": {
+      "id": "projected-pre-norm",
+      "label": "Projected pre-norm",
+      "page": "objects/projected_pre_norm.md",
+      "category": "normalization",
+      "results": [
+        {
+          "title": "CoT Sandwich Theorem",
+          "path": "results/cot_sandwich_theorem.md"
+        },
+        {
+          "title": "Linear Decoding Step Bounds",
+          "path": "results/linear_decoding_step_bounds.md"
+        },
+        {
+          "title": "Multi-Pre-Norm Simulation by Projected Pre-Norm",
+          "path": "results/multi_pre_norm_simulation_by_projected_pre_norm.md"
+        },
+        {
+          "title": "Polynomial Decoding Equals P",
+          "path": "results/polynomial_decoding_equals_p.md"
+        },
+        {
+          "title": "Regular Language Recognition with Linear Decoding",
+          "path": "results/regular_language_recognition_with_linear_decoding.md"
+        },
+        {
+          "title": "Time Lower Bound",
+          "path": "results/time_lower_bound.md"
+        },
+        {
+          "title": "Turing Machine Simulation",
+          "path": "results/turing_machine_simulation.md"
+        }
+      ]
+    },
+    "strict-causal-attention": {
+      "id": "strict-causal-attention",
+      "label": "Strict causal attention",
+      "page": "objects/strict_causal_attention.md",
+      "category": "attention",
+      "results": [
+        {
+          "title": "CoT Sandwich Theorem",
+          "path": "results/cot_sandwich_theorem.md"
+        },
+        {
+          "title": "Linear Decoding Step Bounds",
+          "path": "results/linear_decoding_step_bounds.md"
+        },
+        {
+          "title": "Polynomial Decoding Equals P",
+          "path": "results/polynomial_decoding_equals_p.md"
+        },
+        {
+          "title": "Regular Language Recognition with Linear Decoding",
+          "path": "results/regular_language_recognition_with_linear_decoding.md"
+        },
+        {
+          "title": "Time Lower Bound",
+          "path": "results/time_lower_bound.md"
+        },
+        {
+          "title": "Turing Machine Simulation",
+          "path": "results/turing_machine_simulation.md"
+        }
+      ]
+    },
+    "saturated-attention": {
+      "id": "saturated-attention",
+      "label": "Saturated attention",
+      "page": "objects/saturated_attention.md",
+      "category": "attention",
+      "results": [
+        {
+          "title": "CoT Sandwich Theorem",
+          "path": "results/cot_sandwich_theorem.md"
+        },
+        {
+          "title": "Linear Decoding Step Bounds",
+          "path": "results/linear_decoding_step_bounds.md"
+        },
+        {
+          "title": "Polynomial Decoding Equals P",
+          "path": "results/polynomial_decoding_equals_p.md"
+        },
+        {
+          "title": "Regular Language Recognition with Linear Decoding",
+          "path": "results/regular_language_recognition_with_linear_decoding.md"
+        },
+        {
+          "title": "Time Lower Bound",
+          "path": "results/time_lower_bound.md"
+        },
+        {
+          "title": "Turing Machine Simulation",
+          "path": "results/turing_machine_simulation.md"
+        }
+      ]
+    },
+    "self-attention": {
+      "id": "self-attention",
+      "label": "Self-attention layer",
+      "page": "objects/self_attention.md",
+      "category": "layer",
+      "results": [
+        {
+          "title": "Error Analysis of Attention",
+          "path": "results/error_analysis_attention.md"
+        },
+        {
+          "title": "Routing Lemma",
+          "path": "results/routing_lemma.md"
+        }
+      ]
+    },
+    "relu-ffn": {
+      "id": "relu-ffn",
+      "label": "ReLU feed-forward network",
+      "page": "objects/feed_forward_network.md",
+      "category": "layer",
+      "results": [
+        {
+          "title": "Error Analysis of ReLU FFNs",
+          "path": "results/error_analysis_ffnn.md"
+        },
+        {
+          "title": "Routing Lemma",
+          "path": "results/routing_lemma.md"
+        }
+      ]
+    },
+    "epsilon-positive-layer-norm": {
+      "id": "epsilon-positive-layer-norm",
+      "label": "Layer norm with epsilon > 0",
+      "page": "objects/standard_layer_normalization.md",
+      "category": "normalization",
+      "results": [
+        {
+          "title": "Error Analysis of Layer Normalization",
+          "path": "results/error_analysis_layer_normalization.md"
+        }
+      ]
+    },
+    "residual-connections": {
+      "id": "residual-connections",
+      "label": "Residual connections",
+      "page": "objects/residual_stream.md",
+      "category": "layer",
+      "results": [
+        {
+          "title": "Error Analysis of Residual Connections",
+          "path": "results/error_analysis_residual_connections.md"
+        }
+      ]
+    },
+    "tieless-score-gap": {
+      "id": "tieless-score-gap",
+      "label": "Tieless score gap",
+      "page": "objects/tieless_scores.md",
+      "category": "attention",
+      "results": [
+        {
+          "title": "Hardmax--Softmax Gap Bound",
+          "path": "results/hardmax_softmax_gap_bound.md"
+        }
+      ]
+    },
+    "hardmax-attention": {
+      "id": "hardmax-attention",
+      "label": "Hard attention",
+      "page": "objects/hardmax.md",
+      "category": "attention",
+      "results": [
+        {
+          "title": "Hardmax--Softmax Gap Bound",
+          "path": "results/hardmax_softmax_gap_bound.md"
+        }
+      ]
+    },
+    "softmax-attention": {
+      "id": "softmax-attention",
+      "label": "Softmax attention",
+      "page": "objects/attention_weighting_function.md",
+      "category": "attention",
+      "results": [
+        {
+          "title": "Hardmax--Softmax Gap Bound",
+          "path": "results/hardmax_softmax_gap_bound.md"
+        }
+      ]
+    },
+    "multi-pre-norm": {
+      "id": "multi-pre-norm",
+      "label": "Multi-pre-norm",
+      "page": "objects/multi_pre_norm.md",
+      "category": "normalization",
+      "results": [
+        {
+          "title": "Multi-Pre-Norm Simulation by Projected Pre-Norm",
+          "path": "results/multi_pre_norm_simulation_by_projected_pre_norm.md"
+        }
+      ]
+    },
+    "no-layer-normalization": {
+      "id": "no-layer-normalization",
+      "label": "No layer normalization",
+      "page": "objects/layer_norm.md",
+      "category": "normalization",
+      "results": [
+        {
+          "title": "Parallel Composition",
+          "path": "results/parallel_composition.md"
+        }
+      ]
+    },
+    "length-preserving": {
+      "id": "length-preserving",
+      "label": "Length-preserving map",
+      "page": "objects/length_preserving_map.md",
+      "category": "map",
+      "results": [
+        {
+          "title": "Parallel Composition",
+          "path": "results/parallel_composition.md"
+        }
+      ]
+    },
+    "linear-coordinate-maps": {
+      "id": "linear-coordinate-maps",
+      "label": "Linear coordinate maps",
+      "page": "objects/residual_stream.md",
+      "category": "construction",
+      "results": [
+        {
+          "title": "Routing Lemma",
+          "path": "results/routing_lemma.md"
+        }
+      ]
+    },
+    "transformer-layer": {
+      "id": "transformer-layer",
+      "label": "Transformer layer",
+      "page": "objects/transformer_layer.md",
+      "category": "layer",
+      "results": [
+        {
+          "title": "Serial Composition",
+          "path": "results/serial_composition.md"
+        }
+      ]
+    }
+  }
+}

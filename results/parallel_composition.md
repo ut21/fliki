@@ -3,6 +3,10 @@ title: Parallel Composition
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Lemma 8.3"
+assumptions:
+  - transformer
+  - no-layer-normalization
+  - length-preserving
 depends_on:
   - ../objects/transformer.md
   - routing_lemma.md

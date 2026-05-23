@@ -3,6 +3,22 @@ title: Linear Decoding Step Bounds
 type: result
 paper: Merrill and Sabharwal, "The Expressive Power of Transformers with Chain of Thought", ICLR 2024
 source: Sections 1.1, 3.2, and 4
+assumption_sets:
+  lower_bound:
+    label: Lower bound
+    assumptions:
+      - cot-decoding
+      - decoder-only
+      - log-precision
+      - projected-pre-norm
+      - strict-causal-attention
+      - saturated-attention
+  upper_bounds:
+    label: Upper bounds
+    assumptions:
+      - cot-decoding
+      - decoder-only
+      - log-precision
 depends_on:
   - ../results/regular_language_recognition_with_linear_decoding.md
   - ../results/time_lower_bound.md

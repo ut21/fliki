@@ -167,6 +167,51 @@
       font-weight: 600;
     }
 
+    .assumptions {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 0 0 24px 0;
+      background: #fbfbfb;
+    }
+
+    .assumptions-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .assumption-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .assumption-group-label {
+      color: #555;
+      font-size: 0.92rem;
+      min-width: 112px;
+    }
+
+    .assumption-chip {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d7e3f4;
+      border-radius: 999px;
+      background: #f4f8ff;
+      color: #174f91;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      padding: 4px 9px;
+      text-decoration: none;
+    }
+
+    .assumption-chip:hover {
+      background: #eaf2ff;
+      text-decoration: none;
+    }
+
     .mathjax-display {
       margin: 1em 0;
       overflow-x: auto;
@@ -177,6 +222,7 @@
   <div class="topbar">
     <a href="./">Home</a>
     <a href="?page=indices/file_index.md">File Index</a>
+    <a href="?page=indices/by_assumption.md">Assumptions</a>
     <button id="backButton" type="button">Back</button>
     <span class="path" id="currentPath"></span>
   </div>
@@ -187,6 +233,9 @@
     <p>
       This page renders Markdown entries client-side. Open the
       <a href="?page=indices/file_index.md">File Index</a> to browse the wiki.
+      Use the <a href="?page=indices/by_assumption.md">Assumptions</a>
+      index to compare results by model, precision, attention, and normalization
+      requirements.
     </p>
 
     <h2>Layout</h2>
@@ -205,6 +254,7 @@ indices/                    file index and cross-paper notes</code></pre>
     const content = document.getElementById("content");
     const currentPath = document.getElementById("currentPath");
     const backButton = document.getElementById("backButton");
+    let assumptionIndexPromise = null;
 
     marked.setOptions({
       gfm: true,
@@ -285,6 +335,73 @@ indices/                    file index and cross-paper notes</code></pre>
           <summary>Metadata</summary>
           <pre><code>${escapeHtml(frontmatter)}</code></pre>
         </details>
+      `;
+    }
+
+    async function loadAssumptionIndex() {
+      if (!assumptionIndexPromise) {
+        assumptionIndexPromise = fetch("indices/assumption_index.json", { cache: "no-cache" })
+          .then((response) => response.ok ? response.json() : null)
+          .catch(() => null);
+      }
+
+      return assumptionIndexPromise;
+    }
+
+    function renderAssumptionChip(assumption) {
+      const label = escapeHtml(assumption.label || assumption.id);
+      const category = assumption.category ? ` title="${escapeHtml(assumption.category)}"` : "";
+
+      if (!assumption.page) {
+        return `<span class="assumption-chip"${category}>${label}</span>`;
+      }
+
+      return `
+        <a
+          class="assumption-chip"
+          href="?page=${encodeURIComponent(assumption.page)}"
+          ${category}
+        >${label}</a>
+      `;
+    }
+
+    function renderAssumptionGroup(label, assumptions) {
+      if (!assumptions || assumptions.length === 0) return "";
+
+      return `
+        <div class="assumption-group">
+          <div class="assumption-group-label">${escapeHtml(label)}</div>
+          ${assumptions.map(renderAssumptionChip).join("")}
+        </div>
+      `;
+    }
+
+    function renderAssumptions(path, assumptionIndex) {
+      const page = assumptionIndex?.pages?.[path];
+      if (!page) return "";
+
+      const groups = [];
+      const sets = Object.values(page.assumption_sets || {});
+
+      if (page.assumptions && page.assumptions.length > 0) {
+        groups.push(renderAssumptionGroup(sets.length > 0 ? "Direct" : "Assumptions", page.assumptions));
+      }
+
+      for (const set of sets) {
+        groups.push(renderAssumptionGroup(set.label, set.assumptions));
+      }
+
+      if (groups.length === 0 && page.effective_assumptions?.length > 0) {
+        groups.push(renderAssumptionGroup("Assumptions", page.effective_assumptions));
+      }
+
+      if (groups.length === 0) return "";
+
+      return `
+        <section class="assumptions" aria-label="Assumptions">
+          <div class="assumptions-title">Assumptions</div>
+          ${groups.join("")}
+        </section>
       `;
     }
 
@@ -399,12 +516,14 @@ indices/                    file index and cross-paper notes</code></pre>
         }
 
         const rawMarkdown = await response.text();
+        const assumptionIndex = await loadAssumptionIndex();
         const { frontmatter, body } = stripFrontmatter(rawMarkdown);
         const protectedBody = protectMath(body);
         const renderedBody = marked.parse(protectedBody.markdown);
 
         content.innerHTML =
           renderFrontmatter(frontmatter) +
+          renderAssumptions(normalizedPath, assumptionIndex) +
           restoreMath(renderedBody, protectedBody.math);
 
         rewriteLocalLinks(normalizedPath);
@@ -439,6 +558,7 @@ indices/                    file index and cross-paper notes</code></pre>
           rawHref.startsWith("http://") ||
           rawHref.startsWith("https://") ||
           rawHref.startsWith("mailto:") ||
+          rawHref.startsWith("?") ||
           rawHref.startsWith("#")
         ) {
           return;

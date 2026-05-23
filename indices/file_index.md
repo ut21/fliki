@@ -38,6 +38,7 @@ type: index
 - [examples/dyck_k_d_iterative_matching.md](../examples/dyck_k_d_iterative_matching.md)
 - [examples/induction_heads.md](../examples/induction_heads.md)
 - [indices/file_index.md](../indices/file_index.md)
+- [indices/by_assumption.md](../indices/by_assumption.md)
 - [indices/iclr2024_cot_transformers_readme.md](../indices/iclr2024_cot_transformers_readme.md)
 - [indices/reused_entries.md](../indices/reused_entries.md)
 - [objects/attention_masking.md](../objects/attention_masking.md)

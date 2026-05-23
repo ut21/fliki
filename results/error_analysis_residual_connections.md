@@ -3,6 +3,8 @@ title: Error Analysis of Residual Connections
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Proposition 7.4"
+assumptions:
+  - residual-connections
 depends_on:
   - ../objects/residual_stream.md
 ---

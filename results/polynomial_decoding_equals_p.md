@@ -3,6 +3,22 @@ title: Polynomial Decoding Equals P
 type: result
 paper: Merrill and Sabharwal, "The Expressive Power of Transformers with Chain of Thought", ICLR 2024
 source: Section 1.1, polynomial-steps implication
+assumption_sets:
+  lower_bound:
+    label: Lower bound
+    assumptions:
+      - cot-decoding
+      - decoder-only
+      - log-precision
+      - projected-pre-norm
+      - strict-causal-attention
+      - saturated-attention
+  upper_bound:
+    label: Upper bound
+    assumptions:
+      - cot-decoding
+      - decoder-only
+      - log-precision
 depends_on:
   - ../results/time_lower_bound.md
   - ../results/quadratic_time_upper_bound.md

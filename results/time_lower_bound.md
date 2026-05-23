@@ -7,6 +7,13 @@ aliases:
   - Corollary 2.1
   - TIME lower bound
   - TIME(t(n)) subset CoT(t(n))
+assumptions:
+  - cot-decoding
+  - decoder-only
+  - log-precision
+  - projected-pre-norm
+  - strict-causal-attention
+  - saturated-attention
 depends_on:
   - ../objects/cot_decoding_class.md
   - ../results/turing_machine_simulation.md

@@ -3,6 +3,10 @@ title: Routing Lemma
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Lemma 8.1"
+assumptions:
+  - relu-ffn
+  - self-attention
+  - linear-coordinate-maps
 depends_on:
   - ../objects/feed_forward_network.md
   - ../objects/self_attention.md

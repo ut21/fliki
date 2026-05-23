@@ -3,6 +3,8 @@ title: Error Analysis of ReLU FFNs
 type: result
 paper: "Yang et al., The Transformer Cookbook, arXiv:2510.00368, 2025"
 source: "Proposition 7.2"
+assumptions:
+  - relu-ffn
 depends_on:
   - ../objects/feed_forward_network.md
 ---

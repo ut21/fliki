@@ -8,6 +8,9 @@ aliases:
   - projected pre-norm simulates multi-pre-norm
   - multi-pre-norm elimination
   - Proposition 1
+assumptions:
+  - multi-pre-norm
+  - projected-pre-norm
 depends_on:
   - ../objects/layer_norm.md
   - ../objects/pre_norm.md
