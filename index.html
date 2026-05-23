@@ -285,14 +285,119 @@ indices/                    file index and cross-paper notes</code></pre>
     }
 
     async function typesetMath() {
-      if (!window.MathJax || !MathJax.typesetPromise) return;
-      await MathJax.typesetPromise([content]);
-    }
+        if (!window.MathJax) return;
+      
+        if (MathJax.startup && MathJax.startup.promise) {
+          await MathJax.startup.promise;
+        }
+      
+        if (MathJax.typesetClear) {
+          MathJax.typesetClear([content]);
+        }
+      
+        if (MathJax.typesetPromise) {
+          await MathJax.typesetPromise([content]);
+        }
+      }
 
+    <script>
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+    
+    function protectMath(markdown) {
+      const math = [];
+      let output = "";
+      let i = 0;
+      let inFence = false;
+      let inlineCode = false;
+    
+      while (i < markdown.length) {
+        if (markdown.startsWith("```", i)) {
+          inFence = !inFence;
+          output += "```";
+          i += 3;
+          continue;
+        }
+    
+        if (!inFence && markdown[i] === "`") {
+          inlineCode = !inlineCode;
+          output += markdown[i];
+          i += 1;
+          continue;
+        }
+    
+        if (!inFence && !inlineCode && markdown.startsWith("$$", i)) {
+          const end = markdown.indexOf("$$", i + 2);
+          if (end !== -1) {
+            const text = markdown.slice(i, end + 2);
+            const token = `@@MATH_BLOCK_${math.length}@@`;
+            math.push({ token, text, display: true });
+            output += `\n\n${token}\n\n`;
+            i = end + 2;
+            continue;
+          }
+        }
+    
+        if (!inFence && !inlineCode && markdown[i] === "$" && markdown[i + 1] !== "$") {
+          let j = i + 1;
+          let found = -1;
+    
+          while (j < markdown.length) {
+            if (markdown[j] === "\\") {
+              j += 2;
+              continue;
+            }
+            if (markdown[j] === "$") {
+              found = j;
+              break;
+            }
+            if (markdown[j] === "\n") break;
+            j += 1;
+          }
+    
+          if (found !== -1) {
+            const text = markdown.slice(i, found + 1);
+            const token = `@@MATH_INLINE_${math.length}@@`;
+            math.push({ token, text, display: false });
+            output += token;
+            i = found + 1;
+            continue;
+          }
+        }
+    
+        output += markdown[i];
+        i += 1;
+      }
+    
+      return { markdown: output, math };
+    }
+    
+    function restoreMath(html, math) {
+      let restored = html;
+    
+      for (const item of math) {
+        const replacement = item.display
+          ? `<div class="mathjax-display">${escapeHtml(item.text)}</div>`
+          : `<span class="mathjax-inline">${escapeHtml(item.text)}</span>`;
+    
+        restored = restored.split(item.token).join(replacement);
+      }
+    
+      return restored;
+    }
     async function loadMarkdown(path, pushState = true) {
       const normalizedPath = normalizePath(path);
       currentPath.textContent = normalizedPath;
-      content.innerHTML = `<p class="loading">Loading ${normalizedPath}...</p>`;
+      const protectedBody = protectMath(body);
+      const renderedBody = marked.parse(protectedBody.markdown);
+      
+      content.innerHTML =
+        renderFrontmatter(frontmatter) +
+        restoreMath(renderedBody, protectedBody.math);
 
       try {
         const response = await fetch(normalizedPath, { cache: "no-cache" });
