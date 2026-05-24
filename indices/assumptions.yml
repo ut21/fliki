@@ -58,42 +58,6 @@ transformer:
   label: Transformer
   page: objects/transformer.md
   category: architecture
-transformer-classifier:
-  label: Transformer classifier
-  page: objects/transformer_classifier.md
-  category: architecture
-fixed-parameters:
-  label: Fixed parameters
-  page: objects/transformer_classifier.md
-  category: architecture
-finite-precision:
-  label: Finite precision
-  page: objects/finite_precision_transformer.md
-  category: precision
-fom:
-  label: FO(M)
-  page: objects/first_order_logic_with_majority.md
-  category: logic
-log-uniform-tc0:
-  label: Log-uniform TC0
-  page: objects/log_uniform_tc0.md
-  category: circuit
-threshold-circuit:
-  label: Threshold circuit
-  page: objects/threshold_circuit.md
-  category: circuit
-computation-graph-family:
-  label: Computation graph family
-  page: objects/computation_graph_family.md
-  category: circuit
-block-circuit-simulation:
-  label: Block circuit simulation
-  page: objects/block_circuit_simulation.md
-  category: circuit
-constant-depth-poly-size:
-  label: Constant depth and polynomial size
-  page: objects/log_uniform_tc0.md
-  category: circuit
 transformer-layer:
   label: Transformer layer
   page: objects/transformer_layer.md

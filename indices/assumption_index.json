@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T03:46:18.626Z",
+  "generated_at": "2026-05-23T03:30:20.952Z",
   "assumptions": {
     "decoder-only": {
       "id": "decoder-only",
@@ -91,60 +91,6 @@
       "page": "objects/transformer.md",
       "category": "architecture"
     },
-    "transformer-classifier": {
-      "id": "transformer-classifier",
-      "label": "Transformer classifier",
-      "page": "objects/transformer_classifier.md",
-      "category": "architecture"
-    },
-    "fixed-parameters": {
-      "id": "fixed-parameters",
-      "label": "Fixed parameters",
-      "page": "objects/transformer_classifier.md",
-      "category": "architecture"
-    },
-    "finite-precision": {
-      "id": "finite-precision",
-      "label": "Finite precision",
-      "page": "objects/finite_precision_transformer.md",
-      "category": "precision"
-    },
-    "fom": {
-      "id": "fom",
-      "label": "FO(M)",
-      "page": "objects/first_order_logic_with_majority.md",
-      "category": "logic"
-    },
-    "log-uniform-tc0": {
-      "id": "log-uniform-tc0",
-      "label": "Log-uniform TC0",
-      "page": "objects/log_uniform_tc0.md",
-      "category": "circuit"
-    },
-    "threshold-circuit": {
-      "id": "threshold-circuit",
-      "label": "Threshold circuit",
-      "page": "objects/threshold_circuit.md",
-      "category": "circuit"
-    },
-    "computation-graph-family": {
-      "id": "computation-graph-family",
-      "label": "Computation graph family",
-      "page": "objects/computation_graph_family.md",
-      "category": "circuit"
-    },
-    "block-circuit-simulation": {
-      "id": "block-circuit-simulation",
-      "label": "Block circuit simulation",
-      "page": "objects/block_circuit_simulation.md",
-      "category": "circuit"
-    },
-    "constant-depth-poly-size": {
-      "id": "constant-depth-poly-size",
-      "label": "Constant depth and polynomial size",
-      "page": "objects/log_uniform_tc0.md",
-      "category": "circuit"
-    },
     "transformer-layer": {
       "id": "transformer-layer",
       "label": "Transformer layer",
@@ -225,84 +171,6 @@
           "label": "Standard layer normalization",
           "page": "objects/standard_layer_normalization.md",
           "category": "normalization"
-        }
-      ]
-    },
-    "results/computation_graph_circuit_simulation.md": {
-      "title": "Computation Graph Circuit Simulation",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        },
-        {
-          "id": "threshold-circuit",
-          "label": "Threshold circuit",
-          "page": "objects/threshold_circuit.md",
-          "category": "circuit"
-        },
-        {
-          "id": "block-circuit-simulation",
-          "label": "Block circuit simulation",
-          "page": "objects/block_circuit_simulation.md",
-          "category": "circuit"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        },
-        {
-          "id": "threshold-circuit",
-          "label": "Threshold circuit",
-          "page": "objects/threshold_circuit.md",
-          "category": "circuit"
-        },
-        {
-          "id": "block-circuit-simulation",
-          "label": "Block circuit simulation",
-          "page": "objects/block_circuit_simulation.md",
-          "category": "circuit"
-        }
-      ]
-    },
-    "results/constant_depth_computation_graphs_in_xc0.md": {
-      "title": "Constant-Depth Computation Graphs in XC0",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        },
-        {
-          "id": "constant-depth-poly-size",
-          "label": "Constant depth and polynomial size",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        },
-        {
-          "id": "constant-depth-poly-size",
-          "label": "Constant depth and polynomial size",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
         }
       ]
     },
@@ -511,39 +379,6 @@
         }
       ]
     },
-    "results/finite_precision_attention_sparsity.md": {
-      "title": "Finite Precision Attention Sparsity",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "finite-precision",
-          "label": "Finite precision",
-          "page": "objects/finite_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "finite-precision",
-          "label": "Finite precision",
-          "page": "objects/finite_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        }
-      ]
-    },
     "results/hardmax_softmax_gap_bound.md": {
       "title": "Hardmax--Softmax Gap Bound",
       "type": "result",
@@ -695,153 +530,6 @@
           "label": "Saturated attention",
           "page": "objects/saturated_attention.md",
           "category": "attention"
-        }
-      ]
-    },
-    "results/log_precision_component_padding.md": {
-      "title": "Log-Precision Component Padding",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-uniform-tc0",
-          "label": "Log-uniform TC0",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-uniform-tc0",
-          "label": "Log-uniform TC0",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
-        }
-      ]
-    },
-    "results/log_precision_transformers_in_fom.md": {
-      "title": "Log-Precision Transformers in FO(M)",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "fom",
-          "label": "FO(M)",
-          "page": "objects/first_order_logic_with_majority.md",
-          "category": "logic"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "fom",
-          "label": "FO(M)",
-          "page": "objects/first_order_logic_with_majority.md",
-          "category": "logic"
-        }
-      ]
-    },
-    "results/log_uniform_computation_graphs_in_tc0.md": {
-      "title": "Log-Uniform Computation Graphs in TC0",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        },
-        {
-          "id": "log-uniform-tc0",
-          "label": "Log-uniform TC0",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        },
-        {
-          "id": "log-uniform-tc0",
-          "label": "Log-uniform TC0",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
         }
       ]
     },
@@ -1442,153 +1130,6 @@
         }
       ]
     },
-    "results/transformer_as_log_uniform_computation_graph.md": {
-      "title": "Transformer as Log-Uniform Computation Graph",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "computation-graph-family",
-          "label": "Computation graph family",
-          "page": "objects/computation_graph_family.md",
-          "category": "circuit"
-        }
-      ]
-    },
-    "results/transformer_components_in_log_uniform_tc0.md": {
-      "title": "Transformer Components in Log-Uniform TC0",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-uniform-tc0",
-          "label": "Log-uniform TC0",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-uniform-tc0",
-          "label": "Log-uniform TC0",
-          "page": "objects/log_uniform_tc0.md",
-          "category": "circuit"
-        }
-      ]
-    },
-    "results/transformer_computation_reduces_to_division_and_dyck.md": {
-      "title": "Transformer Computation Reduces to Division and Dyck",
-      "type": "result",
-      "assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "fom",
-          "label": "FO(M)",
-          "page": "objects/first_order_logic_with_majority.md",
-          "category": "logic"
-        }
-      ],
-      "assumption_sets": {},
-      "effective_assumptions": [
-        {
-          "id": "transformer-classifier",
-          "label": "Transformer classifier",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "log-precision",
-          "label": "Log precision",
-          "page": "objects/log_precision_transformer.md",
-          "category": "precision"
-        },
-        {
-          "id": "fixed-parameters",
-          "label": "Fixed parameters",
-          "page": "objects/transformer_classifier.md",
-          "category": "architecture"
-        },
-        {
-          "id": "fom",
-          "label": "FO(M)",
-          "page": "objects/first_order_logic_with_majority.md",
-          "category": "logic"
-        }
-      ]
-    },
     "results/turing_machine_simulation.md": {
       "title": "Turing Machine Simulation",
       "type": "result",
@@ -1704,66 +1245,6 @@
         }
       ]
     },
-    "computation-graph-family": {
-      "id": "computation-graph-family",
-      "label": "Computation graph family",
-      "page": "objects/computation_graph_family.md",
-      "category": "circuit",
-      "results": [
-        {
-          "title": "Computation Graph Circuit Simulation",
-          "path": "results/computation_graph_circuit_simulation.md"
-        },
-        {
-          "title": "Constant-Depth Computation Graphs in XC0",
-          "path": "results/constant_depth_computation_graphs_in_xc0.md"
-        },
-        {
-          "title": "Log-Uniform Computation Graphs in TC0",
-          "path": "results/log_uniform_computation_graphs_in_tc0.md"
-        },
-        {
-          "title": "Transformer as Log-Uniform Computation Graph",
-          "path": "results/transformer_as_log_uniform_computation_graph.md"
-        }
-      ]
-    },
-    "threshold-circuit": {
-      "id": "threshold-circuit",
-      "label": "Threshold circuit",
-      "page": "objects/threshold_circuit.md",
-      "category": "circuit",
-      "results": [
-        {
-          "title": "Computation Graph Circuit Simulation",
-          "path": "results/computation_graph_circuit_simulation.md"
-        }
-      ]
-    },
-    "block-circuit-simulation": {
-      "id": "block-circuit-simulation",
-      "label": "Block circuit simulation",
-      "page": "objects/block_circuit_simulation.md",
-      "category": "circuit",
-      "results": [
-        {
-          "title": "Computation Graph Circuit Simulation",
-          "path": "results/computation_graph_circuit_simulation.md"
-        }
-      ]
-    },
-    "constant-depth-poly-size": {
-      "id": "constant-depth-poly-size",
-      "label": "Constant depth and polynomial size",
-      "page": "objects/log_uniform_tc0.md",
-      "category": "circuit",
-      "results": [
-        {
-          "title": "Constant-Depth Computation Graphs in XC0",
-          "path": "results/constant_depth_computation_graphs_in_xc0.md"
-        }
-      ]
-    },
     "cot-decoding": {
       "id": "cot-decoding",
       "label": "Chain-of-thought decoding",
@@ -1859,14 +1340,6 @@
           "path": "results/linear_decoding_step_bounds.md"
         },
         {
-          "title": "Log-Precision Component Padding",
-          "path": "results/log_precision_component_padding.md"
-        },
-        {
-          "title": "Log-Precision Transformers in FO(M)",
-          "path": "results/log_precision_transformers_in_fom.md"
-        },
-        {
           "title": "Logarithmic Decoding Step Bound",
           "path": "results/logarithmic_decoding_step_bound.md"
         },
@@ -1889,14 +1362,6 @@
         {
           "title": "Time Lower Bound",
           "path": "results/time_lower_bound.md"
-        },
-        {
-          "title": "Transformer Components in Log-Uniform TC0",
-          "path": "results/transformer_components_in_log_uniform_tc0.md"
-        },
-        {
-          "title": "Transformer Computation Reduces to Division and Dyck",
-          "path": "results/transformer_computation_reduces_to_division_and_dyck.md"
         },
         {
           "title": "Turing Machine Simulation",
@@ -2060,50 +1525,6 @@
         }
       ]
     },
-    "finite-precision": {
-      "id": "finite-precision",
-      "label": "Finite precision",
-      "page": "objects/finite_precision_transformer.md",
-      "category": "precision",
-      "results": [
-        {
-          "title": "Finite Precision Attention Sparsity",
-          "path": "results/finite_precision_attention_sparsity.md"
-        }
-      ]
-    },
-    "transformer-classifier": {
-      "id": "transformer-classifier",
-      "label": "Transformer classifier",
-      "page": "objects/transformer_classifier.md",
-      "category": "architecture",
-      "results": [
-        {
-          "title": "Finite Precision Attention Sparsity",
-          "path": "results/finite_precision_attention_sparsity.md"
-        },
-        {
-          "title": "Log-Precision Component Padding",
-          "path": "results/log_precision_component_padding.md"
-        },
-        {
-          "title": "Log-Precision Transformers in FO(M)",
-          "path": "results/log_precision_transformers_in_fom.md"
-        },
-        {
-          "title": "Transformer as Log-Uniform Computation Graph",
-          "path": "results/transformer_as_log_uniform_computation_graph.md"
-        },
-        {
-          "title": "Transformer Components in Log-Uniform TC0",
-          "path": "results/transformer_components_in_log_uniform_tc0.md"
-        },
-        {
-          "title": "Transformer Computation Reduces to Division and Dyck",
-          "path": "results/transformer_computation_reduces_to_division_and_dyck.md"
-        }
-      ]
-    },
     "tieless-score-gap": {
       "id": "tieless-score-gap",
       "label": "Tieless score gap",
@@ -2137,66 +1558,6 @@
         {
           "title": "Hardmax--Softmax Gap Bound",
           "path": "results/hardmax_softmax_gap_bound.md"
-        }
-      ]
-    },
-    "fixed-parameters": {
-      "id": "fixed-parameters",
-      "label": "Fixed parameters",
-      "page": "objects/transformer_classifier.md",
-      "category": "architecture",
-      "results": [
-        {
-          "title": "Log-Precision Component Padding",
-          "path": "results/log_precision_component_padding.md"
-        },
-        {
-          "title": "Log-Precision Transformers in FO(M)",
-          "path": "results/log_precision_transformers_in_fom.md"
-        },
-        {
-          "title": "Transformer Components in Log-Uniform TC0",
-          "path": "results/transformer_components_in_log_uniform_tc0.md"
-        },
-        {
-          "title": "Transformer Computation Reduces to Division and Dyck",
-          "path": "results/transformer_computation_reduces_to_division_and_dyck.md"
-        }
-      ]
-    },
-    "log-uniform-tc0": {
-      "id": "log-uniform-tc0",
-      "label": "Log-uniform TC0",
-      "page": "objects/log_uniform_tc0.md",
-      "category": "circuit",
-      "results": [
-        {
-          "title": "Log-Precision Component Padding",
-          "path": "results/log_precision_component_padding.md"
-        },
-        {
-          "title": "Log-Uniform Computation Graphs in TC0",
-          "path": "results/log_uniform_computation_graphs_in_tc0.md"
-        },
-        {
-          "title": "Transformer Components in Log-Uniform TC0",
-          "path": "results/transformer_components_in_log_uniform_tc0.md"
-        }
-      ]
-    },
-    "fom": {
-      "id": "fom",
-      "label": "FO(M)",
-      "page": "objects/first_order_logic_with_majority.md",
-      "category": "logic",
-      "results": [
-        {
-          "title": "Log-Precision Transformers in FO(M)",
-          "path": "results/log_precision_transformers_in_fom.md"
-        },
-        {
-          "title": "Transformer Computation Reduces to Division and Dyck",
-          "path": "results/transformer_computation_reduces_to_division_and_dyck.md"
         }
       ]
     },

@@ -19,26 +19,10 @@ type: index
 - [Time Lower Bound](../results/time_lower_bound.md)
 - [Turing Machine Simulation](../results/turing_machine_simulation.md)
 
-### [Fixed parameters](../objects/transformer_classifier.md)
-
-- [Log-Precision Component Padding](../results/log_precision_component_padding.md)
-- [Log-Precision Transformers in FO(M)](../results/log_precision_transformers_in_fom.md)
-- [Transformer Components in Log-Uniform TC0](../results/transformer_components_in_log_uniform_tc0.md)
-- [Transformer Computation Reduces to Division and Dyck](../results/transformer_computation_reduces_to_division_and_dyck.md)
-
 ### [Transformer](../objects/transformer.md)
 
 - [Bounded Activations](../results/bounded_activations.md)
 - [Parallel Composition](../results/parallel_composition.md)
-
-### [Transformer classifier](../objects/transformer_classifier.md)
-
-- [Finite Precision Attention Sparsity](../results/finite_precision_attention_sparsity.md)
-- [Log-Precision Component Padding](../results/log_precision_component_padding.md)
-- [Log-Precision Transformers in FO(M)](../results/log_precision_transformers_in_fom.md)
-- [Transformer as Log-Uniform Computation Graph](../results/transformer_as_log_uniform_computation_graph.md)
-- [Transformer Components in Log-Uniform TC0](../results/transformer_components_in_log_uniform_tc0.md)
-- [Transformer Computation Reduces to Division and Dyck](../results/transformer_computation_reduces_to_division_and_dyck.md)
 
 ## Attention
 
@@ -71,33 +55,6 @@ type: index
 ### [Tieless score gap](../objects/tieless_scores.md)
 
 - [Hardmax--Softmax Gap Bound](../results/hardmax_softmax_gap_bound.md)
-
-## Circuit
-
-### [Block circuit simulation](../objects/block_circuit_simulation.md)
-
-- [Computation Graph Circuit Simulation](../results/computation_graph_circuit_simulation.md)
-
-### [Computation graph family](../objects/computation_graph_family.md)
-
-- [Computation Graph Circuit Simulation](../results/computation_graph_circuit_simulation.md)
-- [Constant-Depth Computation Graphs in XC0](../results/constant_depth_computation_graphs_in_xc0.md)
-- [Log-Uniform Computation Graphs in TC0](../results/log_uniform_computation_graphs_in_tc0.md)
-- [Transformer as Log-Uniform Computation Graph](../results/transformer_as_log_uniform_computation_graph.md)
-
-### [Constant depth and polynomial size](../objects/log_uniform_tc0.md)
-
-- [Constant-Depth Computation Graphs in XC0](../results/constant_depth_computation_graphs_in_xc0.md)
-
-### [Log-uniform TC0](../objects/log_uniform_tc0.md)
-
-- [Log-Precision Component Padding](../results/log_precision_component_padding.md)
-- [Log-Uniform Computation Graphs in TC0](../results/log_uniform_computation_graphs_in_tc0.md)
-- [Transformer Components in Log-Uniform TC0](../results/transformer_components_in_log_uniform_tc0.md)
-
-### [Threshold circuit](../objects/threshold_circuit.md)
-
-- [Computation Graph Circuit Simulation](../results/computation_graph_circuit_simulation.md)
 
 ## Construction
 
@@ -143,13 +100,6 @@ type: index
 
 - [Serial Composition](../results/serial_composition.md)
 
-## Logic
-
-### [FO(M)](../objects/first_order_logic_with_majority.md)
-
-- [Log-Precision Transformers in FO(M)](../results/log_precision_transformers_in_fom.md)
-- [Transformer Computation Reduces to Division and Dyck](../results/transformer_computation_reduces_to_division_and_dyck.md)
-
 ## Map
 
 ### [Length-preserving map](../objects/length_preserving_map.md)
@@ -187,23 +137,15 @@ type: index
 
 ## Precision
 
-### [Finite precision](../objects/finite_precision_transformer.md)
-
-- [Finite Precision Attention Sparsity](../results/finite_precision_attention_sparsity.md)
-
 ### [Log precision](../objects/log_precision_transformer.md)
 
 - [CoT Sandwich Theorem](../results/cot_sandwich_theorem.md)
 - [Linear Decoding Step Bounds](../results/linear_decoding_step_bounds.md)
-- [Log-Precision Component Padding](../results/log_precision_component_padding.md)
-- [Log-Precision Transformers in FO(M)](../results/log_precision_transformers_in_fom.md)
 - [Logarithmic Decoding Step Bound](../results/logarithmic_decoding_step_bound.md)
 - [Polynomial Decoding Equals P](../results/polynomial_decoding_equals_p.md)
 - [Quadratic Time Upper Bound](../results/quadratic_time_upper_bound.md)
 - [Regular Language Recognition with Linear Decoding](../results/regular_language_recognition_with_linear_decoding.md)
 - [Space Upper Bound](../results/space_upper_bound.md)
 - [Time Lower Bound](../results/time_lower_bound.md)
-- [Transformer Components in Log-Uniform TC0](../results/transformer_components_in_log_uniform_tc0.md)
-- [Transformer Computation Reduces to Division and Dyck](../results/transformer_computation_reduces_to_division_and_dyck.md)
 - [Turing Machine Simulation](../results/turing_machine_simulation.md)
 
