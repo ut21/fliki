@@ -128,6 +128,12 @@
       text-decoration: none;
     }
 
+    .topbar .primary-action {
+      border-color: #bcd3ef;
+      background: #f4f8ff;
+      color: #174f91;
+    }
+
     .topbar a:hover, .topbar button:hover {
       background: #f0f0f0;
       text-decoration: none;
@@ -216,6 +222,133 @@
       margin: 1em 0;
       overflow-x: auto;
     }
+
+    .editor {
+      display: grid;
+      gap: 18px;
+    }
+
+    .editor-section {
+      border-top: 1px solid #eee;
+      padding-top: 18px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .editor-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .editor-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .editor label {
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .editor input,
+    .editor select,
+    .editor textarea {
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid #d6d6d6;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font: inherit;
+      color: #222;
+      background: #fff;
+    }
+
+    .editor textarea {
+      min-height: 260px;
+      font-family: "SFMono-Regular", Consolas, Monaco, monospace;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .editor .small-text {
+      color: #666;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .editor-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .editor button {
+      font: inherit;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      color: #222;
+      padding: 7px 11px;
+      cursor: pointer;
+    }
+
+    .editor button.primary {
+      border-color: #174f91;
+      background: #174f91;
+      color: #fff;
+    }
+
+    .editor button:hover {
+      filter: brightness(0.98);
+    }
+
+    .checkbox-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 14px;
+    }
+
+    .checkbox-list label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 400;
+    }
+
+    .checkbox-list input {
+      width: auto;
+    }
+
+    .editor-message {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #fafafa;
+      white-space: pre-wrap;
+    }
+
+    .editor-message.success {
+      border-color: #b9dfc1;
+      background: #f2fbf4;
+      color: #145722;
+    }
+
+    .editor-message.error {
+      border-color: #ffd0d0;
+      background: #fff3f3;
+      color: #8a1f1f;
+    }
+
+    @media (max-width: 720px) {
+      .editor-grid,
+      .checkbox-list {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -223,6 +356,8 @@
     <a href="./">Home</a>
     <a href="?page=indices/file_index.md">File Index</a>
     <a href="?page=indices/by_assumption.md">Assumptions</a>
+    <a class="primary-action" href="?edit=new">New Page</a>
+    <button id="editButton" type="button">Edit Page</button>
     <button id="backButton" type="button">Back</button>
     <span class="path" id="currentPath"></span>
   </div>
@@ -236,6 +371,7 @@
       Use the <a href="?page=indices/by_assumption.md">Assumptions</a>
       index to compare results by model, precision, attention, and normalization
       requirements.
+      Use <a href="?edit=new">New Page</a> to add or edit wiki entries.
     </p>
 
     <h2>Layout</h2>
@@ -244,7 +380,7 @@
 constructions/feedforward/  feed-forward recipes
 constructions/attention/    attention recipes
 constructions/layer_norm/   layer-normalization and rounding recipes
-constructions/              cross-cutting constructions from the ICLR 2024 CoT paper
+constructions/              miscellaneous constructions
 results/                    theorem, lemma, proposition, and corollary pages
 examples/                   assembled example constructions
 indices/                    file index and cross-paper notes</code></pre>
@@ -254,7 +390,12 @@ indices/                    file index and cross-paper notes</code></pre>
     const content = document.getElementById("content");
     const currentPath = document.getElementById("currentPath");
     const backButton = document.getElementById("backButton");
+    const editButton = document.getElementById("editButton");
     let assumptionIndexPromise = null;
+    let currentMarkdownPath = "";
+    const githubOwner = "ut21";
+    const githubRepo = "fliki";
+    const defaultBranch = "main";
 
     marked.setOptions({
       gfm: true,
@@ -265,9 +406,23 @@ indices/                    file index and cross-paper notes</code></pre>
       history.back();
     });
 
+    editButton.addEventListener("click", () => {
+      const path = currentMarkdownPath || getPageFromURL() || "";
+      const url = new URL(window.location);
+      url.search = "";
+      url.searchParams.set("edit", path || "new");
+      history.pushState({ edit: path || "new" }, "", url);
+      renderEditor(path);
+    });
+
     function getPageFromURL() {
       const params = new URLSearchParams(window.location.search);
       return params.get("page");
+    }
+
+    function getEditFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("edit");
     }
 
     function normalizePath(path) {
@@ -348,6 +503,47 @@ indices/                    file index and cross-paper notes</code></pre>
       return assumptionIndexPromise;
     }
 
+    function parseScalarList(frontmatter, key) {
+      const lines = frontmatter.split(/\r?\n/);
+      const values = [];
+      let active = false;
+
+      for (const line of lines) {
+        const topLevel = line.match(/^([A-Za-z0-9_-]+):/);
+        if (topLevel) {
+          active = topLevel[1] === key;
+          continue;
+        }
+
+        if (active) {
+          const item = line.match(/^  -\s+(.+)$/);
+          if (item) values.push(item[1].trim().replace(/^["']|["']$/g, ""));
+        }
+      }
+
+      return values;
+    }
+
+    function parseScalar(frontmatter, key) {
+      const match = frontmatter.match(new RegExp(`^${key}:\\s*(.*)$`, "m"));
+      if (!match) return "";
+      return match[1].trim().replace(/^["']|["']$/g, "");
+    }
+
+    function assumptionsFromFrontmatter(frontmatter, assumptionIndex) {
+      const registry = assumptionIndex?.assumptions || {};
+      const ids = parseScalarList(frontmatter, "assumptions");
+
+      return ids.map((id) => {
+        return registry[id] || {
+          id,
+          label: id,
+          page: "",
+          category: "uncategorized"
+        };
+      });
+    }
+
     function renderAssumptionChip(assumption) {
       const label = escapeHtml(assumption.label || assumption.id);
       const category = assumption.category ? ` title="${escapeHtml(assumption.category)}"` : "";
@@ -376,22 +572,24 @@ indices/                    file index and cross-paper notes</code></pre>
       `;
     }
 
-    function renderAssumptions(path, assumptionIndex) {
+    function renderAssumptions(path, assumptionIndex, frontmatter = "") {
       const page = assumptionIndex?.pages?.[path];
-      if (!page) return "";
+      if (!page && !frontmatter) return "";
 
       const groups = [];
-      const sets = Object.values(page.assumption_sets || {});
+      const sets = Object.values(page?.assumption_sets || {});
 
-      if (page.assumptions && page.assumptions.length > 0) {
+      if (page?.assumptions && page.assumptions.length > 0) {
         groups.push(renderAssumptionGroup(sets.length > 0 ? "Direct" : "Assumptions", page.assumptions));
+      } else if (!page && frontmatter) {
+        groups.push(renderAssumptionGroup("Assumptions", assumptionsFromFrontmatter(frontmatter, assumptionIndex)));
       }
 
       for (const set of sets) {
         groups.push(renderAssumptionGroup(set.label, set.assumptions));
       }
 
-      if (groups.length === 0 && page.effective_assumptions?.length > 0) {
+      if (groups.length === 0 && page?.effective_assumptions?.length > 0) {
         groups.push(renderAssumptionGroup("Assumptions", page.effective_assumptions));
       }
 
@@ -403,6 +601,388 @@ indices/                    file index and cross-paper notes</code></pre>
           ${groups.join("")}
         </section>
       `;
+    }
+
+    function slugifyTitle(title) {
+      return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .replace(/_+/g, "_");
+    }
+
+    function quoteFrontmatterValue(value) {
+      if (!value) return "";
+      if (/[:,#\[\]{}]|^\s|\s$/.test(value)) {
+        return JSON.stringify(value);
+      }
+      return value;
+    }
+
+    function listToFrontmatter(key, values) {
+      const clean = values.map((value) => value.trim()).filter(Boolean);
+      if (clean.length === 0) return "";
+      return `${key}:\n${clean.map((value) => `  - ${value}`).join("\n")}\n`;
+    }
+
+    function buildMarkdownFromEditor(form) {
+      const title = form.querySelector("#editorTitle").value.trim();
+      const type = form.querySelector("#editorType").value.trim();
+      const paper = form.querySelector("#editorPaper").value.trim();
+      const source = form.querySelector("#editorSource").value.trim();
+      const aliases = form.querySelector("#editorAliases").value.split(/\r?\n|,/);
+      const dependsOn = form.querySelector("#editorDependsOn").value.split(/\r?\n|,/);
+      const selectedAssumptions = [...form.querySelectorAll("input[name='assumption']:checked")]
+        .map((input) => input.value);
+      const body = form.querySelector("#editorBody").value.replace(/\s+$/, "");
+
+      let frontmatter = "---\n";
+      frontmatter += `title: ${quoteFrontmatterValue(title)}\n`;
+      frontmatter += `type: ${quoteFrontmatterValue(type || "result")}\n`;
+      if (paper) frontmatter += `paper: ${quoteFrontmatterValue(paper)}\n`;
+      if (source) frontmatter += `source: ${quoteFrontmatterValue(source)}\n`;
+      frontmatter += listToFrontmatter("aliases", aliases);
+      frontmatter += listToFrontmatter("assumptions", selectedAssumptions);
+      frontmatter += listToFrontmatter("depends_on", dependsOn);
+      frontmatter += "---\n\n";
+
+      return frontmatter + body + "\n";
+    }
+
+    function fillEditorFromMarkdown(markdown, form, path = "") {
+      const { frontmatter, body } = stripFrontmatter(markdown);
+      const title = parseScalar(frontmatter, "title");
+      const type = parseScalar(frontmatter, "type") || "result";
+
+      form.querySelector("#editorPath").value = path;
+      form.querySelector("#editorTitle").value = title;
+      form.querySelector("#editorType").value = type;
+      form.querySelector("#editorPaper").value = parseScalar(frontmatter, "paper");
+      form.querySelector("#editorSource").value = parseScalar(frontmatter, "source");
+      form.querySelector("#editorAliases").value = parseScalarList(frontmatter, "aliases").join("\n");
+      form.querySelector("#editorDependsOn").value = parseScalarList(frontmatter, "depends_on").join("\n");
+      form.querySelector("#editorBody").value = body;
+
+      const selectedAssumptions = new Set(parseScalarList(frontmatter, "assumptions"));
+      form.querySelectorAll("input[name='assumption']").forEach((input) => {
+        input.checked = selectedAssumptions.has(input.value);
+      });
+    }
+
+    function markdownTemplate(title = "New Result", type = "result") {
+      const heading = title || "New Result";
+      return `---\ntitle: ${heading}\ntype: ${type}\nsource: \nassumptions:\n  - log-precision\ndepends_on:\n  - ../objects/log_precision_transformer.md\n---\n\n# ${heading}\n\n## Statement\n\n\n\n## Notes\n\n`;
+    }
+
+    function safeEditorPath(path) {
+      const normalized = normalizePath(path).replace(/^\/+/, "");
+      if (!normalized.endsWith(".md")) {
+        throw new Error("Path must end in .md.");
+      }
+      if (
+        normalized.startsWith("../") ||
+        normalized.includes("/../") ||
+        normalized.startsWith(".git/")
+      ) {
+        throw new Error("Path must stay inside the wiki repository.");
+      }
+      if (!/^(objects|results|constructions|examples|indices)\//.test(normalized) && normalized !== "README.md") {
+        throw new Error("Path must be under objects/, results/, constructions/, examples/, or indices/.");
+      }
+      return normalized;
+    }
+
+    function encodeBase64Unicode(text) {
+      const bytes = new TextEncoder().encode(text);
+      let binary = "";
+      bytes.forEach((byte) => {
+        binary += String.fromCharCode(byte);
+      });
+      return btoa(binary);
+    }
+
+    function decodeBase64Unicode(text) {
+      const binary = atob(text.replace(/\s/g, ""));
+      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+      return new TextDecoder().decode(bytes);
+    }
+
+    async function githubRequest(path, options = {}) {
+      const token = document.getElementById("editorToken")?.value.trim();
+      if (!token) throw new Error("GitHub token is required to publish changes.");
+
+      const response = await fetch(`https://api.github.com${path}`, {
+        ...options,
+        headers: {
+          "Accept": "application/vnd.github+json",
+          "Authorization": `Bearer ${token}`,
+          "X-GitHub-Api-Version": "2022-11-28",
+          ...(options.headers || {})
+        }
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`GitHub API ${response.status}: ${text}`);
+      }
+
+      return response.json();
+    }
+
+    async function readGithubFile(path, branch) {
+      try {
+        return await githubRequest(`/repos/${githubOwner}/${githubRepo}/contents/${encodeURIComponent(path).replace(/%2F/g, "/")}?ref=${encodeURIComponent(branch)}`);
+      } catch (error) {
+        if (String(error.message).includes("GitHub API 404")) return null;
+        throw error;
+      }
+    }
+
+    async function putGithubFile(path, content, message, branch, sha = undefined) {
+      return githubRequest(`/repos/${githubOwner}/${githubRepo}/contents/${encodeURIComponent(path).replace(/%2F/g, "/")}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          message,
+          content: encodeBase64Unicode(content),
+          branch,
+          ...(sha ? { sha } : {})
+        })
+      });
+    }
+
+    function fileIndexLine(path) {
+      return `- [${path}](../${path})`;
+    }
+
+    function updateFileIndexContent(indexMarkdown, path) {
+      const line = fileIndexLine(path);
+      if (indexMarkdown.includes(line)) return indexMarkdown;
+
+      const lines = indexMarkdown.replace(/\s+$/, "").split(/\r?\n/);
+      const insertAt = lines.findIndex((item) => item.startsWith("- [") && item.localeCompare(line) > 0);
+
+      if (insertAt === -1) {
+        lines.push(line);
+      } else {
+        lines.splice(insertAt, 0, line);
+      }
+
+      return `${lines.join("\n")}\n`;
+    }
+
+    function setEditorMessage(text, type = "") {
+      const message = document.getElementById("editorMessage");
+      if (!message) return;
+      message.className = `editor-message${type ? ` ${type}` : ""}`;
+      message.hidden = false;
+      message.textContent = text;
+    }
+
+    async function submitEditor(form) {
+      const path = safeEditorPath(form.querySelector("#editorPath").value);
+      const branch = form.querySelector("#editorBranch").value.trim() || defaultBranch;
+      const message = form.querySelector("#editorCommitMessage").value.trim() || `Update ${path}`;
+      const markdown = buildMarkdownFromEditor(form);
+
+      setEditorMessage("Publishing...");
+
+      const existing = await readGithubFile(path, branch);
+      await putGithubFile(path, markdown, message, branch, existing?.sha);
+
+      if (!existing && path !== "indices/file_index.md") {
+        const index = await readGithubFile("indices/file_index.md", branch);
+        if (index?.content) {
+          const indexMarkdown = decodeBase64Unicode(index.content);
+          const updatedIndex = updateFileIndexContent(indexMarkdown, path);
+          if (updatedIndex !== indexMarkdown) {
+            await putGithubFile(
+              "indices/file_index.md",
+              updatedIndex,
+              `Add ${path} to file index`,
+              branch,
+              index.sha
+            );
+          }
+        }
+      }
+
+      setEditorMessage(`Published ${path}.\nGitHub Pages will update after the commit is built.`, "success");
+    }
+
+    function renderEditor(path = "new") {
+      const normalizedPath = path && path !== "new" ? normalizePath(path) : "";
+      currentMarkdownPath = "";
+      currentPath.textContent = normalizedPath ? `Editing ${normalizedPath}` : "New page";
+
+      content.innerHTML = `
+        <h1>Wiki Editor</h1>
+        <form class="editor" id="wikiEditor">
+          <div class="editor-section editor-grid">
+            <div class="editor-field full">
+              <label for="editorPath">Path</label>
+              <input id="editorPath" name="path" value="${escapeHtml(normalizedPath)}" placeholder="results/new_result.md" required />
+              <div class="small-text">Use objects/, results/, constructions/, examples/, or indices/. New pages are added to the file index automatically.</div>
+            </div>
+
+            <div class="editor-field">
+              <label for="editorTitle">Title</label>
+              <input id="editorTitle" name="title" placeholder="New Result" required />
+            </div>
+
+            <div class="editor-field">
+              <label for="editorType">Type</label>
+              <select id="editorType" name="type">
+                <option value="result">result</option>
+                <option value="object">object</option>
+                <option value="construction">construction</option>
+                <option value="example">example</option>
+                <option value="index">index</option>
+                <option value="model-definition">model-definition</option>
+                <option value="model-assumption">model-assumption</option>
+              </select>
+            </div>
+
+            <div class="editor-field">
+              <label for="editorPaper">Paper</label>
+              <input id="editorPaper" name="paper" />
+            </div>
+
+            <div class="editor-field">
+              <label for="editorSource">Source</label>
+              <input id="editorSource" name="source" placeholder="Section 3, Theorem 1" />
+            </div>
+
+            <div class="editor-field">
+              <label for="editorAliases">Aliases</label>
+              <textarea id="editorAliases" name="aliases" placeholder="One alias per line"></textarea>
+            </div>
+
+            <div class="editor-field">
+              <label for="editorDependsOn">Depends on</label>
+              <textarea id="editorDependsOn" name="depends_on" placeholder="../objects/example.md"></textarea>
+            </div>
+          </div>
+
+          <div class="editor-section">
+            <label>Assumptions</label>
+            <div class="checkbox-list" id="editorAssumptions"></div>
+          </div>
+
+          <div class="editor-section editor-field">
+            <label for="editorBody">Body</label>
+            <textarea id="editorBody" name="body"></textarea>
+          </div>
+
+          <div class="editor-section editor-grid">
+            <div class="editor-field">
+              <label for="editorToken">GitHub token</label>
+              <input id="editorToken" name="token" type="password" autocomplete="off" placeholder="Fine-grained token with Contents read/write" />
+              <div class="small-text">Used only for the publish request from this browser.</div>
+            </div>
+
+            <div class="editor-field">
+              <label for="editorBranch">Branch</label>
+              <input id="editorBranch" name="branch" value="${defaultBranch}" />
+            </div>
+
+            <div class="editor-field full">
+              <label for="editorCommitMessage">Commit message</label>
+              <input id="editorCommitMessage" name="message" placeholder="Update wiki page" />
+            </div>
+          </div>
+
+          <div class="editor-actions">
+            <button type="button" id="loadExistingButton">Load Existing</button>
+            <button type="button" id="applyTemplateButton">Apply Template</button>
+            <button type="button" id="previewButton">Preview</button>
+            <button class="primary" type="submit">Publish</button>
+          </div>
+
+          <div id="editorMessage" class="editor-message" hidden></div>
+        </form>
+      `;
+
+      const form = document.getElementById("wikiEditor");
+
+      loadAssumptionIndex().then((assumptionIndex) => {
+        const assumptions = Object.values(assumptionIndex?.assumptions || {})
+          .sort((a, b) => `${a.category} ${a.label}`.localeCompare(`${b.category} ${b.label}`));
+
+        document.getElementById("editorAssumptions").innerHTML = assumptions.map((assumption) => `
+          <label>
+            <input type="checkbox" name="assumption" value="${escapeHtml(assumption.id)}" />
+            ${escapeHtml(assumption.label)}
+          </label>
+        `).join("");
+
+        if (normalizedPath) {
+          fetch(normalizedPath, { cache: "no-cache" })
+            .then((response) => {
+              if (!response.ok) throw new Error(`Could not load ${normalizedPath}.`);
+              return response.text();
+            })
+            .then((markdown) => fillEditorFromMarkdown(markdown, form, normalizedPath))
+            .catch((error) => setEditorMessage(error.message, "error"));
+        } else {
+          fillEditorFromMarkdown(markdownTemplate(), form, "");
+          form.querySelector("#editorPath").value = "results/new_result.md";
+        }
+      });
+
+      form.querySelector("#editorTitle").addEventListener("input", () => {
+        const pathInput = form.querySelector("#editorPath");
+        if (pathInput.value === "results/new_result.md" || !pathInput.value.trim()) {
+          pathInput.value = `results/${slugifyTitle(form.querySelector("#editorTitle").value || "new_result")}.md`;
+        }
+      });
+
+      form.querySelector("#loadExistingButton").addEventListener("click", async () => {
+        try {
+          const path = safeEditorPath(form.querySelector("#editorPath").value);
+          const response = await fetch(path, { cache: "no-cache" });
+          if (!response.ok) throw new Error(`Could not load ${path}.`);
+          fillEditorFromMarkdown(await response.text(), form, path);
+          setEditorMessage(`Loaded ${path}.`, "success");
+        } catch (error) {
+          setEditorMessage(error.message, "error");
+        }
+      });
+
+      form.querySelector("#applyTemplateButton").addEventListener("click", () => {
+        const title = form.querySelector("#editorTitle").value.trim() || "New Result";
+        const type = form.querySelector("#editorType").value.trim() || "result";
+        fillEditorFromMarkdown(markdownTemplate(title, type), form, form.querySelector("#editorPath").value);
+      });
+
+      form.querySelector("#previewButton").addEventListener("click", async () => {
+        const markdown = buildMarkdownFromEditor(form);
+        const { frontmatter, body } = stripFrontmatter(markdown);
+        const assumptionIndex = await loadAssumptionIndex();
+        const protectedBody = protectMath(body);
+        const renderedBody = marked.parse(protectedBody.markdown);
+
+        setEditorMessage("Preview updated below.", "success");
+        const oldPreview = document.getElementById("editorPreview");
+        if (oldPreview) oldPreview.remove();
+        form.insertAdjacentHTML("afterend", `
+          <section id="editorPreview">
+            <h2>Preview</h2>
+            ${renderFrontmatter(frontmatter)}
+            ${renderAssumptions("", assumptionIndex, frontmatter)}
+            ${restoreMath(renderedBody, protectedBody.math)}
+          </section>
+        `);
+        await typesetElement(document.getElementById("editorPreview"));
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        try {
+          await submitEditor(form);
+        } catch (error) {
+          setEditorMessage(error.message, "error");
+        }
+      });
     }
 
     function protectMath(markdown) {
@@ -503,8 +1083,25 @@ indices/                    file index and cross-paper notes</code></pre>
       }
     }
 
+    async function typesetElement(element) {
+      if (!window.MathJax || !element) return;
+
+      if (MathJax.startup && MathJax.startup.promise) {
+        await MathJax.startup.promise;
+      }
+
+      if (MathJax.typesetClear) {
+        MathJax.typesetClear([element]);
+      }
+
+      if (MathJax.typesetPromise) {
+        await MathJax.typesetPromise([element]);
+      }
+    }
+
     async function loadMarkdown(path, pushState = true) {
       const normalizedPath = normalizePath(path);
+      currentMarkdownPath = normalizedPath;
       currentPath.textContent = normalizedPath;
       content.innerHTML = `<p class="loading">Loading ${escapeHtml(normalizedPath)}...</p>`;
 
@@ -523,7 +1120,7 @@ indices/                    file index and cross-paper notes</code></pre>
 
         content.innerHTML =
           renderFrontmatter(frontmatter) +
-          renderAssumptions(normalizedPath, assumptionIndex) +
+          renderAssumptions(normalizedPath, assumptionIndex, frontmatter) +
           restoreMath(renderedBody, protectedBody.math);
 
         rewriteLocalLinks(normalizedPath);
@@ -586,6 +1183,12 @@ indices/                    file index and cross-paper notes</code></pre>
     }
 
     window.addEventListener("popstate", (event) => {
+      const edit = event.state?.edit || getEditFromURL();
+      if (edit) {
+        renderEditor(edit);
+        return;
+      }
+
       const page = event.state?.page || getPageFromURL();
       if (page) {
         loadMarkdown(page, false);
@@ -595,6 +1198,12 @@ indices/                    file index and cross-paper notes</code></pre>
     });
 
     window.addEventListener("DOMContentLoaded", () => {
+      const edit = getEditFromURL();
+      if (edit) {
+        renderEditor(edit);
+        return;
+      }
+
       const page = getPageFromURL();
       if (page) {
         loadMarkdown(page, false);
