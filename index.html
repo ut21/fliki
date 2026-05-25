@@ -223,6 +223,34 @@
       overflow-x: auto;
     }
 
+    .home-directory {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .directory-column h2 {
+      margin-top: 0;
+      font-size: 1.05rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 6px;
+    }
+
+    .directory-column ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .directory-column li {
+      margin: 4px 0;
+      line-height: 1.35;
+    }
+
+    .directory-column a {
+      word-break: break-word;
+    }
+
     .editor {
       display: grid;
       gap: 18px;
@@ -345,7 +373,8 @@
 
     @media (max-width: 720px) {
       .editor-grid,
-      .checkbox-list {
+      .checkbox-list,
+      .home-directory {
         grid-template-columns: 1fr;
       }
     }
@@ -374,16 +403,7 @@
       Use <a href="?edit=new">New Page</a> to add or edit wiki entries.
     </p>
 
-    <h2>Layout</h2>
-
-    <pre><code>objects/                    formal primitives and definitions
-constructions/feedforward/  feed-forward recipes
-constructions/attention/    attention recipes
-constructions/layer_norm/   layer-normalization and rounding recipes
-constructions/              miscellaneous constructions
-results/                    theorem, lemma, proposition, and corollary pages
-examples/                   assembled example constructions
-indices/                    file index and cross-paper notes</code></pre>
+    <div id="homeDirectory" class="loading">Loading directory...</div>
   </main>
 
   <script>
@@ -1145,6 +1165,80 @@ indices/                    file index and cross-paper notes</code></pre>
       }
     }
 
+    function titleFromPath(path) {
+      const file = path.split("/").pop().replace(/\.md$/, "");
+      return file
+        .split("_")
+        .filter(Boolean)
+        .map((part) => part[0]?.toUpperCase() + part.slice(1))
+        .join(" ");
+    }
+
+    function directoryGroupForPath(path) {
+      if (path.startsWith("objects/")) return "Objects";
+      if (path.startsWith("constructions/")) return "Constructions";
+      if (path.startsWith("results/")) return "Results";
+      if (path.startsWith("examples/")) return "Examples";
+      if (path.startsWith("indices/")) return "Indices";
+      return "Root";
+    }
+
+    async function renderHomeDirectory() {
+      currentMarkdownPath = "";
+      currentPath.textContent = "";
+      const container = document.getElementById("homeDirectory");
+      if (!container) return;
+
+      try {
+        const response = await fetch("indices/file_index.md", { cache: "no-cache" });
+        if (!response.ok) {
+          throw new Error(`Could not load file index: ${response.status} ${response.statusText}`);
+        }
+
+        const markdown = await response.text();
+        const groups = {
+          Objects: [],
+          Constructions: [],
+          Results: [],
+          Examples: [],
+          Indices: [],
+          Root: []
+        };
+
+        for (const match of markdown.matchAll(/^- \[([^\]]+)\]\(([^)]+)\)$/gm)) {
+          const path = normalizePath(match[2].replace(/^\.\.\//, ""));
+          if (!path.endsWith(".md")) continue;
+
+          groups[directoryGroupForPath(path)].push({
+            path,
+            label: match[1] === path ? titleFromPath(path) : match[1]
+          });
+        }
+
+        container.className = "home-directory";
+        container.innerHTML = Object.entries(groups)
+          .filter(([, pages]) => pages.length > 0)
+          .map(([group, pages]) => `
+            <section class="directory-column">
+              <h2>${escapeHtml(group)}</h2>
+              <ul>
+                ${pages
+                  .sort((a, b) => a.label.localeCompare(b.label))
+                  .map((page) => `<li><a href="?page=${encodeURIComponent(page.path)}">${escapeHtml(page.label)}</a></li>`)
+                  .join("")}
+              </ul>
+            </section>
+          `)
+          .join("");
+      } catch (error) {
+        container.className = "error";
+        container.innerHTML = `
+          <strong>Failed to load directory.</strong>
+          <p>${escapeHtml(error.message)}</p>
+        `;
+      }
+    }
+
     function rewriteLocalLinks(currentFile) {
       const links = content.querySelectorAll("a[href]");
 
@@ -1193,7 +1287,7 @@ indices/                    file index and cross-paper notes</code></pre>
       if (page) {
         loadMarkdown(page, false);
       } else {
-        location.href = location.pathname;
+        renderHomeDirectory();
       }
     });
 
@@ -1207,6 +1301,8 @@ indices/                    file index and cross-paper notes</code></pre>
       const page = getPageFromURL();
       if (page) {
         loadMarkdown(page, false);
+      } else {
+        renderHomeDirectory();
       }
     });
   </script>
