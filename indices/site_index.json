@@ -32,7 +32,6 @@
     "examples/dyck_k_d_iterative_matching.md",
     "examples/induction_heads.md",
     "indices/by_assumption.md",
-    "indices/reused_entries.md",
     "indices/templates.md",
     "objects/attention_masking.md",
     "objects/attention_weighting_function.md",
