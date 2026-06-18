@@ -18,15 +18,6 @@ Pages are organized into four categories:
 
 Each page has YAML frontmatter declaring its `type`, source `paper`, `assumptions`, and dependencies.
 
-## Papers currently covered
-
-- Merrill and Sabharwal, "The Expressive Power of Transformers with Chain of Thought", ICLR 2024
-- Pérez, Marinković, and Barceló, "Attention is Turing Complete", JMLR 2021
-- Merrill, Sabharwal, and Smith, "Saturated Transformers are Constant-Depth Threshold Circuits", TACL 2022
-- Angluin, Chiang, and Yang, "Masked Hard Attention Transformers Recognize Exactly the Star-Free Languages", NeurIPS 2023
-- Strobl, Merrill, Weiss, Chiang, and Angluin, "Transformers as Recognizers of Formal Languages: A Survey on Expressivity", TACL 2024
-- Yang et al., "The Transformer Cookbook", arXiv:2510.00368, 2025
-
 ## Contributing
 
 1. Create a branch.
