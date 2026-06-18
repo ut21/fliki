@@ -1,0 +1,15 @@
+{
+  "name": "fliki",
+  "version": "1.0.0",
+  "description": "The FLaNN Wiki — Formal Language and Neural Networks",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build_site_index.mjs && node scripts/build_assumption_index.mjs && node scripts/build_paper_index.mjs",
+    "build:site-index": "node scripts/build_site_index.mjs",
+    "build:assumptions": "node scripts/build_assumption_index.mjs",
+    "build:papers": "node scripts/build_paper_index.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

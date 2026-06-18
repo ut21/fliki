@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T03:30:20.952Z",
+  "generated_at": "2026-06-18T16:05:44.155Z",
   "assumptions": {
     "decoder-only": {
       "id": "decoder-only",
@@ -126,6 +126,24 @@
       "label": "Linear coordinate maps",
       "page": "objects/residual_stream.md",
       "category": "construction"
+    },
+    "encoder-only": {
+      "id": "encoder-only",
+      "label": "Encoder-only",
+      "page": "objects/encoder_only_transformer.md",
+      "category": "architecture"
+    },
+    "arbitrary-precision": {
+      "id": "arbitrary-precision",
+      "label": "Arbitrary precision",
+      "page": "objects/arbitrary_precision.md",
+      "category": "precision"
+    },
+    "uniform-tc0": {
+      "id": "uniform-tc0",
+      "label": "Uniform TC⁰",
+      "page": "objects/tc0_circuits.md",
+      "category": "complexity"
     }
   },
   "pages": {
@@ -379,6 +397,27 @@
         }
       ]
     },
+    "results/hahn_sensitivity_bound.md": {
+      "title": "Hahn Sensitivity Bound",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "softmax-attention",
+          "label": "Softmax attention",
+          "page": "objects/attention_weighting_function.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "softmax-attention",
+          "label": "Softmax attention",
+          "page": "objects/attention_weighting_function.md",
+          "category": "attention"
+        }
+      ]
+    },
     "results/hardmax_softmax_gap_bound.md": {
       "title": "Hardmax--Softmax Gap Bound",
       "type": "result",
@@ -578,6 +617,39 @@
         }
       ]
     },
+    "results/mhat_recognizes_star_free.md": {
+      "title": "MHAT Recognizes Exactly the Star-Free Languages",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "strict-causal-attention",
+          "label": "Strict causal attention",
+          "page": "objects/strict_causal_attention.md",
+          "category": "attention"
+        },
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        }
+      ]
+    },
     "results/multi_pre_norm_simulation_by_projected_pre_norm.md": {
       "title": "Multi-Pre-Norm Simulation by Projected Pre-Norm",
       "type": "result",
@@ -653,6 +725,27 @@
           "label": "Length-preserving map",
           "page": "objects/length_preserving_map.md",
           "category": "map"
+        }
+      ]
+    },
+    "results/parity_hard_attention.md": {
+      "title": "Parity via Hard Attention",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
         }
       ]
     },
@@ -983,6 +1076,39 @@
         }
       ]
     },
+    "results/saturated_transformers_in_tc0.md": {
+      "title": "Saturated Transformers in TC⁰",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "saturated-attention",
+          "label": "Saturated attention",
+          "page": "objects/saturated_attention.md",
+          "category": "attention"
+        }
+      ]
+    },
     "results/serial_composition.md": {
       "title": "Serial Composition",
       "type": "result",
@@ -1130,6 +1256,72 @@
         }
       ]
     },
+    "results/transformer_dfa_simulation.md": {
+      "title": "Transformer DFA Simulation",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "transformer",
+          "label": "Transformer",
+          "page": "objects/transformer.md",
+          "category": "architecture"
+        }
+      ]
+    },
+    "results/turing_completeness_hard_attention.md": {
+      "title": "Turing Completeness of Hard Attention",
+      "type": "result",
+      "assumptions": [
+        {
+          "id": "encoder-only",
+          "label": "Encoder-only",
+          "page": "objects/encoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "arbitrary-precision",
+          "label": "Arbitrary precision",
+          "page": "objects/arbitrary_precision.md",
+          "category": "precision"
+        },
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        }
+      ],
+      "assumption_sets": {},
+      "effective_assumptions": [
+        {
+          "id": "encoder-only",
+          "label": "Encoder-only",
+          "page": "objects/encoder_only_transformer.md",
+          "category": "architecture"
+        },
+        {
+          "id": "arbitrary-precision",
+          "label": "Arbitrary precision",
+          "page": "objects/arbitrary_precision.md",
+          "category": "precision"
+        },
+        {
+          "id": "hardmax-attention",
+          "label": "Hard attention",
+          "page": "objects/hardmax.md",
+          "category": "attention"
+        }
+      ]
+    },
     "results/turing_machine_simulation.md": {
       "title": "Turing Machine Simulation",
       "type": "result",
@@ -1214,6 +1406,14 @@
         {
           "title": "Parallel Composition",
           "path": "results/parallel_composition.md"
+        },
+        {
+          "title": "Saturated Transformers in TC⁰",
+          "path": "results/saturated_transformers_in_tc0.md"
+        },
+        {
+          "title": "Transformer DFA Simulation",
+          "path": "results/transformer_dfa_simulation.md"
         }
       ]
     },
@@ -1420,6 +1620,10 @@
           "path": "results/linear_decoding_step_bounds.md"
         },
         {
+          "title": "MHAT Recognizes Exactly the Star-Free Languages",
+          "path": "results/mhat_recognizes_star_free.md"
+        },
+        {
           "title": "Polynomial Decoding Equals P",
           "path": "results/polynomial_decoding_equals_p.md"
         },
@@ -1458,6 +1662,10 @@
         {
           "title": "Regular Language Recognition with Linear Decoding",
           "path": "results/regular_language_recognition_with_linear_decoding.md"
+        },
+        {
+          "title": "Saturated Transformers in TC⁰",
+          "path": "results/saturated_transformers_in_tc0.md"
         },
         {
           "title": "Time Lower Bound",
@@ -1525,6 +1733,22 @@
         }
       ]
     },
+    "softmax-attention": {
+      "id": "softmax-attention",
+      "label": "Softmax attention",
+      "page": "objects/attention_weighting_function.md",
+      "category": "attention",
+      "results": [
+        {
+          "title": "Hahn Sensitivity Bound",
+          "path": "results/hahn_sensitivity_bound.md"
+        },
+        {
+          "title": "Hardmax--Softmax Gap Bound",
+          "path": "results/hardmax_softmax_gap_bound.md"
+        }
+      ]
+    },
     "tieless-score-gap": {
       "id": "tieless-score-gap",
       "label": "Tieless score gap",
@@ -1546,18 +1770,18 @@
         {
           "title": "Hardmax--Softmax Gap Bound",
           "path": "results/hardmax_softmax_gap_bound.md"
-        }
-      ]
-    },
-    "softmax-attention": {
-      "id": "softmax-attention",
-      "label": "Softmax attention",
-      "page": "objects/attention_weighting_function.md",
-      "category": "attention",
-      "results": [
+        },
         {
-          "title": "Hardmax--Softmax Gap Bound",
-          "path": "results/hardmax_softmax_gap_bound.md"
+          "title": "MHAT Recognizes Exactly the Star-Free Languages",
+          "path": "results/mhat_recognizes_star_free.md"
+        },
+        {
+          "title": "Parity via Hard Attention",
+          "path": "results/parity_hard_attention.md"
+        },
+        {
+          "title": "Turing Completeness of Hard Attention",
+          "path": "results/turing_completeness_hard_attention.md"
         }
       ]
     },
@@ -1618,6 +1842,30 @@
         {
           "title": "Serial Composition",
           "path": "results/serial_composition.md"
+        }
+      ]
+    },
+    "encoder-only": {
+      "id": "encoder-only",
+      "label": "Encoder-only",
+      "page": "objects/encoder_only_transformer.md",
+      "category": "architecture",
+      "results": [
+        {
+          "title": "Turing Completeness of Hard Attention",
+          "path": "results/turing_completeness_hard_attention.md"
+        }
+      ]
+    },
+    "arbitrary-precision": {
+      "id": "arbitrary-precision",
+      "label": "Arbitrary precision",
+      "page": "objects/arbitrary_precision.md",
+      "category": "precision",
+      "results": [
+        {
+          "title": "Turing Completeness of Hard Attention",
+          "path": "results/turing_completeness_hard_attention.md"
         }
       ]
     }

@@ -19,16 +19,25 @@ type: index
 - [Time Lower Bound](../results/time_lower_bound.md)
 - [Turing Machine Simulation](../results/turing_machine_simulation.md)
 
+### [Encoder-only](../objects/encoder_only_transformer.md)
+
+- [Turing Completeness of Hard Attention](../results/turing_completeness_hard_attention.md)
+
 ### [Transformer](../objects/transformer.md)
 
 - [Bounded Activations](../results/bounded_activations.md)
 - [Parallel Composition](../results/parallel_composition.md)
+- [Saturated Transformers in TC⁰](../results/saturated_transformers_in_tc0.md)
+- [Transformer DFA Simulation](../results/transformer_dfa_simulation.md)
 
 ## Attention
 
 ### [Hard attention](../objects/hardmax.md)
 
 - [Hardmax--Softmax Gap Bound](../results/hardmax_softmax_gap_bound.md)
+- [MHAT Recognizes Exactly the Star-Free Languages](../results/mhat_recognizes_star_free.md)
+- [Parity via Hard Attention](../results/parity_hard_attention.md)
+- [Turing Completeness of Hard Attention](../results/turing_completeness_hard_attention.md)
 
 ### [Saturated attention](../objects/saturated_attention.md)
 
@@ -36,17 +45,20 @@ type: index
 - [Linear Decoding Step Bounds](../results/linear_decoding_step_bounds.md)
 - [Polynomial Decoding Equals P](../results/polynomial_decoding_equals_p.md)
 - [Regular Language Recognition with Linear Decoding](../results/regular_language_recognition_with_linear_decoding.md)
+- [Saturated Transformers in TC⁰](../results/saturated_transformers_in_tc0.md)
 - [Time Lower Bound](../results/time_lower_bound.md)
 - [Turing Machine Simulation](../results/turing_machine_simulation.md)
 
 ### [Softmax attention](../objects/attention_weighting_function.md)
 
+- [Hahn Sensitivity Bound](../results/hahn_sensitivity_bound.md)
 - [Hardmax--Softmax Gap Bound](../results/hardmax_softmax_gap_bound.md)
 
 ### [Strict causal attention](../objects/strict_causal_attention.md)
 
 - [CoT Sandwich Theorem](../results/cot_sandwich_theorem.md)
 - [Linear Decoding Step Bounds](../results/linear_decoding_step_bounds.md)
+- [MHAT Recognizes Exactly the Star-Free Languages](../results/mhat_recognizes_star_free.md)
 - [Polynomial Decoding Equals P](../results/polynomial_decoding_equals_p.md)
 - [Regular Language Recognition with Linear Decoding](../results/regular_language_recognition_with_linear_decoding.md)
 - [Time Lower Bound](../results/time_lower_bound.md)
@@ -136,6 +148,10 @@ type: index
 - [Error Analysis of Layer Normalization](../results/error_analysis_layer_normalization.md)
 
 ## Precision
+
+### [Arbitrary precision](../objects/arbitrary_precision.md)
+
+- [Turing Completeness of Hard Attention](../results/turing_completeness_hard_attention.md)
 
 ### [Log precision](../objects/log_precision_transformer.md)
 

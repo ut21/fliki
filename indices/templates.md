@@ -5,7 +5,7 @@ type: index
 
 # Wiki Entry Templates
 
-Use these templates when adding or editing pages. Create a branch, add the Markdown file, update `indices/site_index.json`, and open a pull request.
+Use these templates when adding or editing pages. Create a branch, add the Markdown file, then run the build scripts (or update `indices/site_index.json` manually), and open a pull request.
 
 ## Result
 
@@ -109,27 +109,30 @@ Use canonical assumption ids from `indices/assumptions.yml`.
 
 Common ids include:
 
-- `decoder-only`
-- `log-precision`
-- `finite-precision`
-- `projected-pre-norm`
-- `strict-causal-attention`
-- `saturated-attention`
-- `transformer-classifier`
-- `fom`
-- `log-uniform-tc0`
+| Id | Meaning |
+|---|---|
+| `decoder-only` | Decoder-only (causal) architecture |
+| `encoder-only` | Encoder-only (bidirectional) architecture |
+| `log-precision` | Log-bounded precision |
+| `arbitrary-precision` | Unbounded/arbitrary precision |
+| `projected-pre-norm` | Projected pre-norm |
+| `strict-causal-attention` | Strict causal (no self) masking |
+| `saturated-attention` | Saturated (average-hardmax) attention |
+| `hardmax-attention` | Unique/leftmost hardmax attention |
+| `softmax-attention` | Standard softmax attention |
+| `cot-decoding` | Chain-of-thought decoding |
+| `uniform-tc0` | Uniform TC⁰ (complexity class) |
 
-For new assumptions, add an entry to `indices/assumptions.yml`.
+For new assumptions, add an entry to `indices/assumptions.yml` before using the id.
 
-## Site Index
+## Build scripts
 
-Add each new page path to `indices/site_index.json`:
+After adding pages, regenerate the indexes:
 
-```json
-{
-  "paths": [
-    "objects/object_title.md",
-    "results/result_title.md"
-  ]
-}
+```sh
+node scripts/build_site_index.mjs        # regenerates site_index.json
+node scripts/build_assumption_index.mjs  # regenerates by_assumption.md and assumption_index.json
+node scripts/build_paper_index.mjs       # regenerates by_paper.md
 ```
+
+You can also update `indices/site_index.json` manually instead of running the script.

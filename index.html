@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transformer Formal-Languages Wiki Entries</title>
+  <title>Fliki — The FLaNN Wiki</title>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
@@ -15,187 +15,154 @@
         processEscapes: true,
         processEnvironments: true
       },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      startup: {
-        typeset: false
-      }
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+      startup: { typeset: false }
     };
   </script>
-  <script
-    id="MathJax-script"
-    async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
       line-height: 1.7;
       max-width: 980px;
       margin: 40px auto;
-      padding: 0 20px;
+      padding: 0 20px 60px;
       color: #222;
       background: #fff;
     }
 
-    h1 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-    }
+    body.wide { max-width: 1300px; }
 
-    h2, h3 {
-      margin-top: 36px;
-    }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    code, pre {
-      font-family: "SFMono-Regular", Consolas, Monaco, monospace;
-    }
+    h1 { border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 18px; }
+    h2 { margin-top: 36px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+    h3 { margin-top: 24px; }
 
-    pre {
-      background: #f5f5f5;
-      padding: 16px;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
+    code, pre { font-family: "SFMono-Regular", Consolas, Monaco, monospace; }
+    pre { background: #f5f5f5; padding: 14px 16px; border-radius: 6px; overflow-x: auto; }
+    code { background: #f5f5f5; padding: 2px 5px; border-radius: 4px; font-size: 0.9em; }
+    pre code { background: transparent; padding: 0; font-size: inherit; }
 
-    code {
-      background: #f5f5f5;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
+    ul { padding-left: 24px; }
+    li { margin: 3px 0; }
+    blockquote { border-left: 4px solid #ddd; padding-left: 16px; color: #555; margin-left: 0; }
 
-    pre code {
-      background: transparent;
-      padding: 0;
-    }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; vertical-align: top; }
+    th { background: #f5f5f5; }
 
-    ul {
-      padding-left: 24px;
-    }
+    .mathjax-display { margin: 1em 0; overflow-x: auto; }
 
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px 10px;
-      vertical-align: top;
-    }
-
-    th {
-      background: #f5f5f5;
-    }
-
-    blockquote {
-      border-left: 4px solid #ddd;
-      padding-left: 16px;
-      color: #555;
-      margin-left: 0;
-    }
-
-    
-
+    /* ── Topbar ──────────────────────────────────────────────────────── */
     .topbar {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .topbar a, .topbar button {
-      font: inherit;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background: #fafafa;
-      color: #222;
-      padding: 6px 10px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .topbar a:hover, .topbar button:hover {
-      background: #f0f0f0;
-      text-decoration: none;
-    }
-
-    .path {
-      font-size: 0.95rem;
-      color: #666;
-      word-break: break-all;
-    }
-
-    .error {
-      background: #fff3f3;
-      border: 1px solid #ffd0d0;
-      color: #8a1f1f;
-      padding: 16px;
-      border-radius: 8px;
-    }
-
-    .loading {
-      color: #666;
-    }
-
-    .frontmatter {
-      background: #fafafa;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin: 16px 0 28px 0;
-      color: #555;
-      font-size: 0.95rem;
-    }
-
-    .frontmatter summary {
-      cursor: pointer;
-      color: #333;
-      font-weight: 600;
-    }
-
-    .assumptions {
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin: 0 0 24px 0;
-      background: #fbfbfb;
-    }
-
-    .assumptions-title {
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .assumption-group {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       align-items: center;
-      margin-top: 8px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+    }
+    .topbar img { height: 80px; width: auto; border-radius: 6px; margin-right: 4px; }
+
+    .topbar a, .topbar button {
+      font: inherit;
+      font-size: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      color: #222;
+      padding: 5px 11px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .topbar a:hover, .topbar button:hover { background: #f0f0f0; text-decoration: none; }
+    .topbar a.contribute { background: #0066cc; color: #fff; border-color: #0055aa; }
+    .topbar a.contribute:hover { background: #0055aa; }
+
+    .search-input {
+      font: inherit;
+      font-size: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: #222;
+      padding: 5px 11px;
+      outline: none;
+      min-width: 200px;
+      margin-left: auto;
+    }
+    .search-input:focus { border-color: #0066cc; }
+    .search-input::placeholder { color: #bbb; }
+
+    .path { font-size: 0.85rem; color: #888; word-break: break-all; }
+
+    /* ── Status ──────────────────────────────────────────────────────── */
+    .error { background: #fff3f3; border: 1px solid #ffd0d0; color: #8a1f1f; padding: 16px; border-radius: 8px; }
+    .loading { color: #888; font-style: italic; }
+    .search-no-results { color: #888; font-style: italic; padding: 10px 0; }
+
+    /* ── Infobox ─────────────────────────────────────────────────────── */
+    .infobox {
+      float: right;
+      clear: right;
+      margin: 4px 0 20px 28px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      min-width: 210px;
+      max-width: 280px;
+    }
+    .infobox-type {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .infobox-row { margin-bottom: 9px; }
+    .infobox-row:last-child { margin-bottom: 0; }
+    .infobox-label { color: #888; font-size: 0.8rem; margin-bottom: 2px; }
+    .infobox-value { color: #222; }
+    .infobox-divider { border: none; border-top: 1px solid #e5e5e5; margin: 10px 0; }
+    .infobox .assumption-group { margin-top: 5px; }
+    .infobox .assumption-group-label { font-size: 0.78rem; color: #888; min-width: 90px; }
+    .infobox .assumption-chip {
+      font-size: 0.78rem;
+      padding: 2px 7px;
+      margin: 1px 2px 1px 0;
     }
 
-    .assumption-group-label {
-      color: #555;
-      font-size: 0.92rem;
-      min-width: 112px;
+    /* ── Table of contents ───────────────────────────────────────────── */
+    .toc {
+      display: inline-block;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 12px 20px 14px 16px;
+      margin: 0 0 28px 0;
+      min-width: 160px;
+      max-width: 380px;
+      font-size: 0.9rem;
     }
+    .toc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 7px; }
+    .toc ol { margin: 0; padding-left: 18px; }
+    .toc li { margin: 3px 0; }
+    .toc .toc-h3 { list-style: none; margin-left: 10px; color: #888; }
+    .toc .toc-h3::before { content: "– "; }
 
+    /* ── Assumption chips ────────────────────────────────────────────── */
     .assumption-chip {
       display: inline-flex;
       align-items: center;
@@ -203,543 +170,734 @@
       border-radius: 999px;
       background: #f4f8ff;
       color: #174f91;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       line-height: 1.2;
-      padding: 4px 9px;
+      padding: 3px 9px;
       text-decoration: none;
     }
-
-    .assumption-chip:hover {
-      background: #eaf2ff;
-      text-decoration: none;
+    .assumption-chip:hover { background: #eaf2ff; text-decoration: none; }
+    .assumption-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 6px;
     }
+    .assumption-group-label { color: #666; font-size: 0.88rem; min-width: 100px; }
 
-    .mathjax-display {
-      margin: 1em 0;
-      overflow-x: auto;
+    /* ── Edit link ───────────────────────────────────────────────────── */
+    .edit-link {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 36px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
     }
+    .edit-link a { color: #0066cc; }
 
+    /* ── Home directory ──────────────────────────────────────────────── */
     .home-directory {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      gap: 24px;
       margin-top: 28px;
     }
-
     .directory-column h2 {
       margin-top: 0;
-      font-size: 1.05rem;
+      font-size: 1rem;
       border-bottom: 1px solid #eee;
       padding-bottom: 6px;
     }
+    .directory-column ul { margin: 0; padding-left: 18px; }
+    .directory-column li { margin: 4px 0; line-height: 1.4; }
+    .directory-column a { word-break: break-word; }
 
-    .directory-column ul {
-      margin: 0;
-      padding-left: 18px;
+    /* ── Editor ──────────────────────────────────────────────────────── */
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+      align-items: start;
+    }
+    .editor-fields { display: flex; flex-direction: column; gap: 16px; }
+
+    .field label { display: block; font-size: 0.88rem; font-weight: 700; color: #555; margin-bottom: 5px; }
+    .field input[type="text"],
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font: inherit;
+      font-size: 0.9rem;
+      background: #fff;
+      color: #222;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: #0066cc;
+    }
+    .field textarea { font-family: "SFMono-Regular", Consolas, monospace; resize: vertical; }
+
+    /* Assumption chip toggles in editor */
+    .chip-toggles { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip-toggle {
+      border: 1px solid #d7e3f4;
+      border-radius: 999px;
+      background: #f4f8ff;
+      color: #174f91;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s, color 0.1s;
+    }
+    .chip-toggle:hover { background: #eaf2ff; }
+    .chip-toggle.on { background: #0066cc; color: #fff; border-color: #0055aa; }
+    .chip-category-label { font-size: 0.78rem; color: #aaa; width: 100%; margin: 4px 0 1px; }
+
+    .editor-actions { display: flex; gap: 8px; }
+    .btn {
+      font: inherit;
+      font-size: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      color: #222;
+      padding: 6px 14px;
+      cursor: pointer;
+    }
+    .btn:hover { background: #f0f0f0; }
+    .btn.primary { background: #0066cc; color: #fff; border-color: #0055aa; }
+    .btn.primary:hover { background: #0055aa; }
+
+    .preview-col { position: sticky; top: 20px; }
+    .preview-label { font-size: 0.8rem; font-weight: 700; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .preview-pane {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 18px 20px;
+      background: #fff;
+      min-height: 180px;
+      max-height: 62vh;
+      overflow-y: auto;
+      font-size: 0.93rem;
+    }
+    .raw-pane {
+      margin-top: 14px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.76rem;
+      white-space: pre;
+      overflow-x: auto;
+      max-height: 180px;
+      overflow-y: auto;
     }
 
-    .directory-column li {
-      margin: 4px 0;
-      line-height: 1.35;
+    .edit-notice {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 6px;
     }
-
-    .directory-column a {
-      word-break: break-word;
+    .submit-guide {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: #444;
     }
+    .submit-guide ol { margin: 8px 0 0; padding-left: 18px; }
+    .submit-guide li { margin: 5px 0; }
 
+    /* ── Responsive ──────────────────────────────────────────────────── */
     @media (max-width: 720px) {
-      .home-directory {
-        grid-template-columns: 1fr;
-      }
+      .home-directory { grid-template-columns: 1fr; }
+      .editor-grid { grid-template-columns: 1fr; }
+      .infobox { float: none; margin: 0 0 20px 0; max-width: 100%; }
+      .search-input { margin-left: 0; min-width: 140px; }
     }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <img src="flann-2.webp" alt="Flann Logo" style="height:100px; width:auto; border-radius:6px; margin-right:10px;" />
+    <img src="flann-2.webp" alt="Fliki" />
     <a href="./">Home</a>
     <a href="?page=indices/by_assumption.md">Assumptions</a>
+    <a href="?page=indices/by_paper.md">Papers</a>
     <a href="?page=indices/templates.md">Templates</a>
-    <button id="backButton" type="button">Back</button>
+    <button id="backButton" type="button">← Back</button>
     <span class="path" id="currentPath"></span>
+    <a href="?editor" class="contribute">+ Contribute</a>
+    <input id="searchInput" class="search-input" type="search" placeholder="Search entries…" aria-label="Search" />
   </div>
 
   <main id="content">
     <h1>Fliki: The FLaNN Wiki</h1>
-
     <p>
-      Use the <a href="?page=indices/by_assumption.md">Assumptions</a>
-      index to compare results by model, precision, attention, and normalization
-      requirements.
-      Use <a href="?page=indices/templates.md">Templates</a> when preparing a pull request.
+      A reference wiki for Formal Language and Neural Network expressivity results.
+      Browse by <a href="?page=indices/by_assumption.md">assumptions</a>
+      or <a href="?page=indices/by_paper.md">paper</a>,
+      or use <a href="?page=indices/templates.md">templates</a> to contribute.
     </p>
-
-    <div id="homeDirectory" class="loading">Loading directory...</div>
+    <div id="homeDirectory" class="loading">Loading…</div>
   </main>
 
   <script>
-    const content = document.getElementById("content");
-    const currentPath = document.getElementById("currentPath");
-    const backButton = document.getElementById("backButton");
+    // ── Globals ───────────────────────────────────────────────────────
+    const content       = document.getElementById("content");
+    const currentPathEl = document.getElementById("currentPath");
+    const backButton    = document.getElementById("backButton");
+    const searchInput   = document.getElementById("searchInput");
+
     let assumptionIndexPromise = null;
-    let currentMarkdownPath = "";
+    let siteIndexPromise       = null;
+    let currentMarkdownPath    = "";
+    let editorDebounce         = null;
 
-    marked.setOptions({
-      gfm: true,
-      breaks: false
-    });
+    marked.setOptions({ gfm: true, breaks: false });
 
-    backButton.addEventListener("click", () => {
-      history.back();
-    });
+    // ── URL ───────────────────────────────────────────────────────────
+    function getParam(k) { return new URLSearchParams(window.location.search).get(k); }
+    function hasParam(k) { return new URLSearchParams(window.location.search).has(k); }
 
-    function getPageFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("page");
+    // ── Path utils ────────────────────────────────────────────────────
+    function normalizePath(p) { return p.replace(/^\.?\//, "").replace(/\\/g, "/"); }
+    function dirname(p) {
+      const n = normalizePath(p), i = n.lastIndexOf("/");
+      return i === -1 ? "" : n.slice(0, i + 1);
     }
-
-    function normalizePath(path) {
-      return path
-        .replace(/^\.?\//, "")
-        .replace(/\\/g, "/");
-    }
-
-    function dirname(path) {
-      const normalized = normalizePath(path);
-      const idx = normalized.lastIndexOf("/");
-      return idx === -1 ? "" : normalized.slice(0, idx + 1);
-    }
-
-    function resolveRelativePath(baseFile, href) {
-      if (!baseFile) return normalizePath(href);
-
-      if (
-        href.startsWith("http://") ||
-        href.startsWith("https://") ||
-        href.startsWith("#") ||
-        href.startsWith("mailto:")
-      ) {
-        return href;
-      }
-
-      const baseDir = dirname(baseFile);
-      const stack = baseDir.split("/").filter(Boolean);
-
+    function resolveRelativePath(base, href) {
+      if (!base) return normalizePath(href);
+      if (/^(https?:|#|mailto:)/.test(href)) return href;
+      const stack = dirname(base).split("/").filter(Boolean);
       for (const part of href.split("/")) {
         if (!part || part === ".") continue;
-        if (part === "..") stack.pop();
-        else stack.push(part);
+        part === ".." ? stack.pop() : stack.push(part);
       }
-
       return stack.join("/");
     }
-
-    function stripFrontmatter(markdown) {
-      if (!markdown.startsWith("---")) {
-        return { frontmatter: "", body: markdown };
-      }
-
-      const end = markdown.indexOf("\n---", 3);
-      if (end === -1) {
-        return { frontmatter: "", body: markdown };
-      }
-
-      const frontmatter = markdown.slice(3, end).trim();
-      const body = markdown.slice(end + 4).replace(/^\s+/, "");
-      return { frontmatter, body };
+    function titleFromPath(p) {
+      return p.split("/").pop().replace(/\.md$/, "")
+        .split("_").filter(Boolean)
+        .map(s => s[0]?.toUpperCase() + s.slice(1)).join(" ");
+    }
+    function groupForPath(p) {
+      if (p.startsWith("objects/"))       return "Objects";
+      if (p.startsWith("constructions/")) return "Constructions";
+      if (p.startsWith("results/"))       return "Results";
+      if (p.startsWith("examples/"))      return "Examples";
+      if (p.startsWith("indices/"))       return "Indices";
+      return "Other";
     }
 
-    function escapeHtml(text) {
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+    // ── HTML ──────────────────────────────────────────────────────────
+    function esc(t) {
+      return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     }
 
-    function renderFrontmatter(frontmatter) {
-      if (!frontmatter) return "";
-      return `
-        <details class="frontmatter">
-          <summary>Metadata</summary>
-          <pre><code>${escapeHtml(frontmatter)}</code></pre>
-        </details>
-      `;
-    }
-
-    async function loadAssumptionIndex() {
-      if (!assumptionIndexPromise) {
-        assumptionIndexPromise = fetch("indices/assumption_index.json", { cache: "no-cache" })
-          .then((response) => response.ok ? response.json() : null)
-          .catch(() => null);
-      }
-
-      return assumptionIndexPromise;
-    }
-
-    function parseScalarList(frontmatter, key) {
-      const lines = frontmatter.split(/\r?\n/);
-      const values = [];
-      let active = false;
-
-      for (const line of lines) {
-        const topLevel = line.match(/^([A-Za-z0-9_-]+):/);
-        if (topLevel) {
-          active = topLevel[1] === key;
-          continue;
+    // ── Math ──────────────────────────────────────────────────────────
+    function protectMath(md) {
+      const math = []; let out = "", i = 0, fence = false, code = false;
+      while (i < md.length) {
+        if (md.startsWith("```", i)) { fence = !fence; out += "```"; i += 3; continue; }
+        if (!fence && md[i] === "`") { code = !code; out += md[i++]; continue; }
+        if (!fence && !code && md.startsWith("$$", i)) {
+          const end = md.indexOf("$$", i + 2);
+          if (end !== -1) {
+            const tok = `@@MB${math.length}@@`;
+            math.push({ token: tok, text: md.slice(i, end + 2), display: true });
+            out += `\n\n${tok}\n\n`; i = end + 2; continue;
+          }
         }
+        if (!fence && !code && md[i] === "$" && md[i+1] !== "$") {
+          let j = i + 1, found = -1;
+          while (j < md.length) {
+            if (md[j] === "\\") { j += 2; continue; }
+            if (md[j] === "$") { found = j; break; }
+            if (md[j] === "\n") break;
+            j++;
+          }
+          if (found !== -1) {
+            const tok = `@@MI${math.length}@@`;
+            math.push({ token: tok, text: md.slice(i, found + 1), display: false });
+            out += tok; i = found + 1; continue;
+          }
+        }
+        out += md[i++];
+      }
+      return { markdown: out, math };
+    }
+    function restoreMath(html, math) {
+      let out = html;
+      for (const m of math) {
+        const rep = m.display
+          ? `<div class="mathjax-display">${esc(m.text)}</div>`
+          : `<span class="mathjax-inline">${esc(m.text)}</span>`;
+        out = out.split(m.token).join(rep);
+      }
+      return out;
+    }
+    async function typesetMath(el = content) {
+      if (!window.MathJax) return;
+      if (MathJax.startup?.promise) await MathJax.startup.promise;
+      if (MathJax.typesetClear) MathJax.typesetClear([el]);
+      if (MathJax.typesetPromise) await MathJax.typesetPromise([el]);
+    }
 
+    // ── Frontmatter ───────────────────────────────────────────────────
+    function stripFrontmatter(raw) {
+      if (!raw.startsWith("---")) return { frontmatter: "", body: raw };
+      const end = raw.indexOf("\n---", 3);
+      if (end === -1) return { frontmatter: "", body: raw };
+      return { frontmatter: raw.slice(3, end).trim(), body: raw.slice(end + 4).replace(/^\s+/, "") };
+    }
+    function fmField(fm, key) {
+      for (const line of fm.split(/\r?\n/)) {
+        const m = line.match(new RegExp(`^${key}:\\s*(.+)$`));
+        if (m) return m[1].trim().replace(/^["']|["']$/g, "");
+      }
+      return "";
+    }
+    function fmList(fm, key) {
+      const vals = []; let active = false;
+      for (const line of fm.split(/\r?\n/)) {
+        const top = line.match(/^([A-Za-z0-9_-]+):/);
+        if (top) { active = top[1] === key; continue; }
         if (active) {
           const item = line.match(/^  -\s+(.+)$/);
-          if (item) values.push(item[1].trim().replace(/^["']|["']$/g, ""));
+          if (item) vals.push(item[1].trim().replace(/^["']|["']$/g, ""));
         }
       }
-
-      return values;
+      return vals;
+    }
+    function assumptionsFromFM(fm, idx) {
+      const reg = idx?.assumptions || {};
+      return fmList(fm, "assumptions").map(id => reg[id] || { id, label: id, page: "", category: "other" });
     }
 
-    function assumptionsFromFrontmatter(frontmatter, assumptionIndex) {
-      const registry = assumptionIndex?.assumptions || {};
-      const ids = parseScalarList(frontmatter, "assumptions");
-
-      return ids.map((id) => {
-        return registry[id] || {
-          id,
-          label: id,
-          page: "",
-          category: "uncategorized"
-        };
-      });
+    // ── Data loaders ──────────────────────────────────────────────────
+    function loadAssumptionIndex() {
+      if (!assumptionIndexPromise)
+        assumptionIndexPromise = fetch("indices/assumption_index.json", { cache: "no-cache" })
+          .then(r => r.ok ? r.json() : null).catch(() => null);
+      return assumptionIndexPromise;
+    }
+    function loadSiteIndex() {
+      if (!siteIndexPromise)
+        siteIndexPromise = fetch("indices/site_index.json", { cache: "no-cache" })
+          .then(r => r.ok ? r.json() : Promise.reject(new Error(r.status)));
+      return siteIndexPromise;
     }
 
-    function renderAssumptionChip(assumption) {
-      const label = escapeHtml(assumption.label || assumption.id);
-      const category = assumption.category ? ` title="${escapeHtml(assumption.category)}"` : "";
-
-      if (!assumption.page) {
-        return `<span class="assumption-chip"${category}>${label}</span>`;
-      }
-
-      return `
-        <a
-          class="assumption-chip"
-          href="?page=${encodeURIComponent(assumption.page)}"
-          ${category}
-        >${label}</a>
-      `;
+    // ── Assumption chip ───────────────────────────────────────────────
+    function chip(a) {
+      const label = esc(a.label || a.id);
+      return a.page
+        ? `<a class="assumption-chip" href="?page=${encodeURIComponent(a.page)}" title="${esc(a.category||'')}">${label}</a>`
+        : `<span class="assumption-chip" title="${esc(a.category||'')}">${label}</span>`;
     }
 
-    function renderAssumptionGroup(label, assumptions) {
-      if (!assumptions || assumptions.length === 0) return "";
+    // ── Infobox ───────────────────────────────────────────────────────
+    const CAT_ORDER = ["architecture","precision","attention","normalization",
+                       "decoding","layer","embeddings","map","complexity","construction"];
+    const TYPE_LABELS = {
+      result:"Result", object:"Object", construction:"Construction", example:"Example",
+      index:"Index", "model-definition":"Model definition",
+      "model-assumption":"Model assumption", "attention-assumption":"Attention assumption"
+    };
 
-      return `
-        <div class="assumption-group">
-          <div class="assumption-group-label">${escapeHtml(label)}</div>
-          ${assumptions.map(renderAssumptionChip).join("")}
-        </div>
-      `;
-    }
+    function renderInfobox(fm, path, idx) {
+      if (!fm) return "";
+      const type   = fmField(fm, "type");
+      const paper  = fmField(fm, "paper");
+      const source = fmField(fm, "source");
+      const label  = TYPE_LABELS[type] || type;
 
-    function renderAssumptions(path, assumptionIndex, frontmatter = "") {
-      const page = assumptionIndex?.pages?.[path];
-      if (!page && !frontmatter) return "";
+      const pageData = idx?.pages?.[path];
+      const sets     = pageData?.assumption_sets ? Object.values(pageData.assumption_sets) : [];
 
-      const groups = [];
-      const sets = Object.values(page?.assumption_sets || {});
-
-      if (page?.assumptions && page.assumptions.length > 0) {
-        groups.push(renderAssumptionGroup(sets.length > 0 ? "Direct" : "Assumptions", page.assumptions));
-      } else if (!page && frontmatter) {
-        groups.push(renderAssumptionGroup("Assumptions", assumptionsFromFrontmatter(frontmatter, assumptionIndex)));
-      }
-
-      for (const set of sets) {
-        groups.push(renderAssumptionGroup(set.label, set.assumptions));
-      }
-
-      if (groups.length === 0 && page?.effective_assumptions?.length > 0) {
-        groups.push(renderAssumptionGroup("Assumptions", page.effective_assumptions));
-      }
-
-      if (groups.length === 0) return "";
-
-      return `
-        <section class="assumptions" aria-label="Assumptions">
-          <div class="assumptions-title">Assumptions</div>
-          ${groups.join("")}
-        </section>
-      `;
-    }
-
-    function protectMath(markdown) {
-      const math = [];
-      let output = "";
-      let i = 0;
-      let inFence = false;
-      let inlineCode = false;
-
-      while (i < markdown.length) {
-        if (markdown.startsWith("```", i)) {
-          inFence = !inFence;
-          output += "```";
-          i += 3;
-          continue;
+      let assumptionHtml = "";
+      if (sets.length > 0) {
+        // Named assumption sets (e.g. lower bound / upper bounds)
+        if (pageData.assumptions?.length) {
+          assumptionHtml += groupRow("All", pageData.assumptions);
         }
-
-        if (!inFence && markdown[i] === "`") {
-          inlineCode = !inlineCode;
-          output += markdown[i];
-          i += 1;
-          continue;
-        }
-
-        if (!inFence && !inlineCode && markdown.startsWith("$$", i)) {
-          const end = markdown.indexOf("$$", i + 2);
-          if (end !== -1) {
-            const text = markdown.slice(i, end + 2);
-            const token = `@@MATH_BLOCK_${math.length}@@`;
-            math.push({ token, text, display: true });
-            output += `\n\n${token}\n\n`;
-            i = end + 2;
-            continue;
+        for (const s of sets) assumptionHtml += groupRow(s.label, s.assumptions || []);
+      } else {
+        const assumptions = pageData?.assumptions?.length
+          ? pageData.assumptions
+          : assumptionsFromFM(fm, idx);
+        if (assumptions.length) {
+          const byCat = {};
+          for (const a of assumptions) (byCat[a.category||"other"] ||= []).push(a);
+          const cats = [...CAT_ORDER.filter(c=>byCat[c]),
+                        ...Object.keys(byCat).filter(c=>!CAT_ORDER.includes(c))];
+          for (const cat of cats) {
+            assumptionHtml += groupRow(cat[0].toUpperCase() + cat.slice(1), byCat[cat]);
           }
         }
-
-        if (!inFence && !inlineCode && markdown[i] === "$" && markdown[i + 1] !== "$") {
-          let j = i + 1;
-          let found = -1;
-
-          while (j < markdown.length) {
-            if (markdown[j] === "\\") {
-              j += 2;
-              continue;
-            }
-            if (markdown[j] === "$") {
-              found = j;
-              break;
-            }
-            if (markdown[j] === "\n") break;
-            j += 1;
-          }
-
-          if (found !== -1) {
-            const text = markdown.slice(i, found + 1);
-            const token = `@@MATH_INLINE_${math.length}@@`;
-            math.push({ token, text, display: false });
-            output += token;
-            i = found + 1;
-            continue;
-          }
-        }
-
-        output += markdown[i];
-        i += 1;
       }
 
-      return { markdown: output, math };
+      if (!label && !paper && !source && !assumptionHtml) return "";
+
+      return `<aside class="infobox" aria-label="Page info">
+        ${label ? `<div class="infobox-type">${esc(label)}</div>` : ""}
+        ${paper  ? `<div class="infobox-row"><div class="infobox-label">Paper</div><div class="infobox-value">${esc(paper)}</div></div>` : ""}
+        ${source ? `<div class="infobox-row"><div class="infobox-label">Source</div><div class="infobox-value">${esc(source)}</div></div>` : ""}
+        ${assumptionHtml ? `<hr class="infobox-divider">${assumptionHtml}` : ""}
+      </aside>`;
     }
 
-    function restoreMath(html, math) {
-      let restored = html;
-
-      for (const item of math) {
-        const replacement = item.display
-          ? `<div class="mathjax-display">${escapeHtml(item.text)}</div>`
-          : `<span class="mathjax-inline">${escapeHtml(item.text)}</span>`;
-
-        restored = restored.split(item.token).join(replacement);
-      }
-
-      return restored;
+    function groupRow(label, assumptions) {
+      if (!assumptions?.length) return "";
+      return `<div class="assumption-group">
+        <div class="assumption-group-label">${esc(label)}</div>
+        ${assumptions.map(chip).join("")}
+      </div>`;
     }
 
-    async function typesetMath() {
-      if (!window.MathJax) return;
-
-      if (MathJax.startup && MathJax.startup.promise) {
-        await MathJax.startup.promise;
-      }
-
-      if (MathJax.typesetClear) {
-        MathJax.typesetClear([content]);
-      }
-
-      if (MathJax.typesetPromise) {
-        await MathJax.typesetPromise([content]);
-      }
+    // ── Table of contents ─────────────────────────────────────────────
+    function addTOC(container) {
+      const hs = [...container.querySelectorAll("h2, h3")];
+      if (hs.length < 3) return;
+      hs.forEach((h, i) => { h.id = `s${i}`; });
+      const items = hs.map((h, i) => {
+        const cls = h.tagName === "H3" ? " class=\"toc-h3\"" : "";
+        return `<li${cls}><a href="#s${i}">${esc(h.textContent)}</a></li>`;
+      }).join("");
+      const toc = document.createElement("div");
+      toc.className = "toc";
+      toc.innerHTML = `<div class="toc-title">Contents</div><ol>${items}</ol>`;
+      const first = container.querySelector("h2");
+      if (first) first.parentNode.insertBefore(toc, first);
     }
 
+    // ── Load markdown page ────────────────────────────────────────────
     async function loadMarkdown(path, pushState = true) {
-      const normalizedPath = normalizePath(path);
-      currentMarkdownPath = normalizedPath;
-      currentPath.textContent = normalizedPath;
-      content.innerHTML = `<p class="loading">Loading ${escapeHtml(normalizedPath)}...</p>`;
+      const p = normalizePath(path);
+      currentMarkdownPath = p;
+      currentPathEl.textContent = p;
+      searchInput.value = "";
+      document.body.classList.remove("wide");
+      content.innerHTML = `<p class="loading">Loading…</p>`;
 
       try {
-        const response = await fetch(normalizedPath, { cache: "no-cache" });
-
-        if (!response.ok) {
-          throw new Error(`Could not fetch ${normalizedPath}: ${response.status} ${response.statusText}`);
-        }
-
-        const rawMarkdown = await response.text();
-        const assumptionIndex = await loadAssumptionIndex();
-        const { frontmatter, body } = stripFrontmatter(rawMarkdown);
-        const protectedBody = protectMath(body);
-        const renderedBody = marked.parse(protectedBody.markdown);
+        const resp = await fetch(p, { cache: "no-cache" });
+        if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+        const raw = await resp.text();
+        const idx = await loadAssumptionIndex();
+        const { frontmatter, body } = stripFrontmatter(raw);
+        const protected_ = protectMath(body);
 
         content.innerHTML =
-          renderFrontmatter(frontmatter) +
-          renderAssumptions(normalizedPath, assumptionIndex, frontmatter) +
-          restoreMath(renderedBody, protectedBody.math);
+          renderInfobox(frontmatter, p, idx) +
+          restoreMath(marked.parse(protected_.markdown), protected_.math) +
+          `<div class="edit-link"><a href="?editor&amp;edit=${encodeURIComponent(p)}">Edit this page</a></div>`;
 
-        rewriteLocalLinks(normalizedPath);
-        await typesetMath();
+        addTOC(content);
+        rewriteLinks(p);
+        await typesetMath(content);
 
         if (pushState) {
           const url = new URL(window.location);
-          url.searchParams.set("page", normalizedPath);
-          history.pushState({ page: normalizedPath }, "", url);
+          url.searchParams.set("page", p);
+          url.searchParams.delete("editor");
+          url.searchParams.delete("edit");
+          history.pushState({ page: p }, "", url);
         }
-      } catch (error) {
-        content.innerHTML = `
-          <div class="error">
-            <strong>Failed to load Markdown.</strong>
-            <p>${escapeHtml(error.message)}</p>
-            <p>
-              Check that the path exists in the published GitHub Pages site:
-              <code>${escapeHtml(normalizedPath)}</code>
-            </p>
-          </div>
-        `;
+      } catch (err) {
+        content.innerHTML = `<div class="error"><strong>Could not load page.</strong><p>${esc(err.message)}</p><p>Path: <code>${esc(p)}</code></p></div>`;
       }
     }
 
-    function titleFromPath(path) {
-      const file = path.split("/").pop().replace(/\.md$/, "");
-      return file
-        .split("_")
-        .filter(Boolean)
-        .map((part) => part[0]?.toUpperCase() + part.slice(1))
-        .join(" ");
-    }
-
-    function directoryGroupForPath(path) {
-      if (path.startsWith("objects/")) return "Objects";
-      if (path.startsWith("constructions/")) return "Constructions";
-      if (path.startsWith("results/")) return "Results";
-      if (path.startsWith("examples/")) return "Examples";
-      if (path.startsWith("indices/")) return "Indices";
-      return "Root";
-    }
-
-    async function renderHomeDirectory() {
-      currentMarkdownPath = "";
-      currentPath.textContent = "";
-      const container = document.getElementById("homeDirectory");
-      if (!container) return;
-
-      try {
-        const response = await fetch("indices/site_index.json", { cache: "no-cache" });
-        if (!response.ok) {
-          throw new Error(`Could not load site index: ${response.status} ${response.statusText}`);
-        }
-
-        const siteIndex = await response.json();
-        const groups = {
-          Objects: [],
-          Constructions: [],
-          Results: [],
-          Examples: [],
-          Indices: [],
-          Root: []
-        };
-
-        for (const rawPath of siteIndex.paths || []) {
-          const path = normalizePath(rawPath);
-          if (!path.endsWith(".md")) continue;
-
-          groups[directoryGroupForPath(path)].push({
-            path,
-            label: titleFromPath(path)
-          });
-        }
-
-        container.className = "home-directory";
-        container.innerHTML = Object.entries(groups)
-          .filter(([, pages]) => pages.length > 0)
-          .map(([group, pages]) => `
-            <section class="directory-column">
-              <h2>${escapeHtml(group)}</h2>
-              <ul>
-                ${pages
-                  .sort((a, b) => a.label.localeCompare(b.label))
-                  .map((page) => `<li><a href="?page=${encodeURIComponent(page.path)}">${escapeHtml(page.label)}</a></li>`)
-                  .join("")}
-              </ul>
-            </section>
-          `)
-          .join("");
-      } catch (error) {
-        container.className = "error";
-        container.innerHTML = `
-          <strong>Failed to load directory.</strong>
-          <p>${escapeHtml(error.message)}</p>
-        `;
-      }
-    }
-
-    function rewriteLocalLinks(currentFile) {
-      const links = content.querySelectorAll("a[href]");
-
-      links.forEach((link) => {
-        const rawHref = link.getAttribute("href");
-
-        if (
-          rawHref.startsWith("http://") ||
-          rawHref.startsWith("https://") ||
-          rawHref.startsWith("mailto:") ||
-          rawHref.startsWith("?") ||
-          rawHref.startsWith("#")
-        ) {
-          return;
-        }
-
-        const [pathPart, hashPart] = rawHref.split("#");
-        const resolvedPath = resolveRelativePath(currentFile, pathPart);
+    // ── Rewrite local links ───────────────────────────────────────────
+    function rewriteLinks(base) {
+      content.querySelectorAll("a[href]").forEach(link => {
+        const href = link.getAttribute("href");
+        if (/^(https?:|mailto:|#|\?)/.test(href)) return;
+        const [pathPart, hashPart] = href.split("#");
+        const resolved = resolveRelativePath(base, pathPart);
         const hash = hashPart ? `#${hashPart}` : "";
-
-        if (resolvedPath.endsWith(".md")) {
-          link.setAttribute("href", `?page=${encodeURIComponent(resolvedPath)}${hash}`);
-          link.addEventListener("click", async (event) => {
-            event.preventDefault();
-            await loadMarkdown(resolvedPath, true);
-
-            if (hash) {
-              const target = document.querySelector(hash);
-              if (target) target.scrollIntoView();
-            }
+        if (resolved.endsWith(".md")) {
+          link.href = `?page=${encodeURIComponent(resolved)}${hash}`;
+          link.addEventListener("click", async e => {
+            e.preventDefault();
+            await loadMarkdown(resolved, true);
+            if (hash) document.querySelector(hash)?.scrollIntoView();
           });
         } else {
-          link.setAttribute("href", resolvedPath + hash);
+          link.href = resolved + hash;
         }
       });
     }
 
-    window.addEventListener("popstate", (event) => {
-      const page = event.state?.page || getPageFromURL();
-      if (page) {
-        loadMarkdown(page, false);
-      } else {
-        renderHomeDirectory();
+    // ── Home directory ────────────────────────────────────────────────
+    async function renderHomeDirectory(query = "") {
+      currentMarkdownPath = "";
+      currentPathEl.textContent = "";
+      document.body.classList.remove("wide");
+
+      content.innerHTML = `
+        <h1>Fliki: The FLaNN Wiki</h1>
+        <p>A reference wiki for Formal Language and Neural Network expressivity results.
+        Browse by <a href="?page=indices/by_assumption.md">assumptions</a>
+        or <a href="?page=indices/by_paper.md">paper</a>,
+        or use <a href="?page=indices/templates.md">templates</a> to contribute.</p>
+        <div id="homeDirectory" class="loading">Loading…</div>`;
+
+      const container = document.getElementById("homeDirectory");
+      try {
+        const si = await loadSiteIndex();
+        const q  = query.toLowerCase().trim();
+        const groups = { Objects:[], Constructions:[], Results:[], Examples:[], Indices:[] };
+
+        for (const rawPath of si.paths || []) {
+          const p = normalizePath(rawPath);
+          if (!p.endsWith(".md")) continue;
+          const label = titleFromPath(p);
+          if (q && !label.toLowerCase().includes(q) && !p.toLowerCase().includes(q)) continue;
+          const g = groupForPath(p);
+          if (groups[g]) groups[g].push({ path: p, label });
+        }
+
+        const filtered = Object.entries(groups).filter(([,ps]) => ps.length);
+        if (!filtered.length && q) {
+          container.className = "";
+          container.innerHTML = `<p class="search-no-results">No entries matching <strong>${esc(query)}</strong>.</p>`;
+          return;
+        }
+
+        container.className = "home-directory";
+        container.innerHTML = filtered.map(([group, pages]) => `
+          <section class="directory-column">
+            <h2>${esc(group)}</h2>
+            <ul>${pages.sort((a,b) => a.label.localeCompare(b.label))
+              .map(p => `<li><a href="?page=${encodeURIComponent(p.path)}">${esc(p.label)}</a></li>`)
+              .join("")}</ul>
+          </section>`).join("");
+      } catch (err) {
+        container.className = "error";
+        container.innerHTML = `<strong>Failed to load directory.</strong><p>${esc(err.message)}</p>`;
+      }
+    }
+
+    // ── Editor ────────────────────────────────────────────────────────
+    async function renderEditorPage(editFile = null) {
+      currentMarkdownPath = "__editor__";
+      currentPathEl.textContent = editFile ? `editing: ${editFile}` : "new page";
+      document.body.classList.add("wide");
+
+      const idx = await loadAssumptionIndex();
+      const registry = idx?.assumptions || {};
+
+      // Build chip toggles grouped by category
+      const byCat = {};
+      for (const [id, a] of Object.entries(registry)) {
+        (byCat[a.category||"other"] ||= []).push({ id, ...a });
+      }
+      const cats = [...CAT_ORDER.filter(c=>byCat[c]),
+                    ...Object.keys(byCat).filter(c=>!CAT_ORDER.includes(c))];
+
+      const toggleHtml = cats.map(cat =>
+        `<span class="chip-category-label">${esc(cat)}</span>` +
+        (byCat[cat]||[]).map(a =>
+          `<button type="button" class="chip-toggle" data-id="${esc(a.id)}">${esc(a.label)}</button>`
+        ).join("")
+      ).join("");
+
+      content.innerHTML = `
+        <h1>${editFile ? "Edit page" : "Contribute a page"}</h1>
+        ${editFile ? `<div class="edit-notice">Editing <code>${esc(editFile)}</code> — download and save to this path in the repo.</div>` : ""}
+
+        <div class="editor-grid">
+          <div class="editor-fields">
+            <div class="field">
+              <label for="edType">Type</label>
+              <select id="edType">
+                <option value="result">Result</option>
+                <option value="object">Object</option>
+                <option value="model-definition">Model definition</option>
+                <option value="model-assumption">Model assumption</option>
+                <option value="attention-assumption">Attention assumption</option>
+                <option value="construction">Construction</option>
+                <option value="example">Example</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="edTitle">Title</label>
+              <input id="edTitle" type="text" placeholder="e.g. Time Lower Bound" />
+            </div>
+            <div class="field">
+              <label for="edPaper">Paper</label>
+              <input id="edPaper" type="text" placeholder='e.g. Author, "Title", Venue Year' />
+            </div>
+            <div class="field">
+              <label for="edSource">Source</label>
+              <input id="edSource" type="text" placeholder="e.g. Section 3, Theorem 1" />
+            </div>
+            <div class="field">
+              <label>Assumptions <span style="font-weight:normal;color:#aaa">(click to toggle)</span></label>
+              <div class="chip-toggles" id="chipToggles">${toggleHtml}</div>
+            </div>
+            <div class="field">
+              <label for="edBody">Body</label>
+              <textarea id="edBody" rows="22"
+                placeholder="# Title&#10;&#10;## Statement&#10;&#10;Write content here.&#10;LaTeX: $x^2$ or $$\\sum_i x_i$$"></textarea>
+            </div>
+            <div class="editor-actions">
+              <button class="btn primary" id="edDownload">Download .md</button>
+              <button class="btn" id="edCopy">Copy markdown</button>
+            </div>
+            <div class="submit-guide">
+              <strong>How to submit</strong>
+              <ol>
+                <li>Fork the repository on GitHub.</li>
+                <li>Save the <code>.md</code> file to the right directory (<code>objects/</code>, <code>results/</code>, etc.).</li>
+                <li>Run <code>node scripts/build_site_index.mjs</code>.</li>
+                <li>For results, run <code>node scripts/build_assumption_index.mjs</code>.</li>
+                <li>Run <code>node scripts/build_paper_index.mjs</code>.</li>
+                <li>Open a pull request.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="preview-col">
+            <div class="preview-label">Live preview</div>
+            <div class="preview-pane" id="edPreview"></div>
+            <div class="preview-label" style="margin-top:14px">Markdown output</div>
+            <div class="raw-pane" id="edRaw"></div>
+          </div>
+        </div>`;
+
+      // Chip toggle behaviour
+      document.getElementById("chipToggles").addEventListener("click", e => {
+        const btn = e.target.closest(".chip-toggle");
+        if (btn) { btn.classList.toggle("on"); schedulePreview(); }
+      });
+
+      // Pre-fill when editing an existing page
+      if (editFile) {
+        try {
+          const resp = await fetch(normalizePath(editFile), { cache: "no-cache" });
+          if (resp.ok) {
+            const raw = await resp.text();
+            const { frontmatter, body } = stripFrontmatter(raw);
+            const set = (id, v) => { const el=document.getElementById(id); if (el&&v) el.value=v; };
+            set("edType",   fmField(frontmatter,"type"));
+            set("edTitle",  fmField(frontmatter,"title"));
+            set("edPaper",  fmField(frontmatter,"paper"));
+            set("edSource", fmField(frontmatter,"source"));
+            set("edBody",   body.trimStart());
+            const ids = new Set(fmList(frontmatter,"assumptions"));
+            document.querySelectorAll(".chip-toggle").forEach(btn => {
+              if (ids.has(btn.dataset.id)) btn.classList.add("on");
+            });
+          }
+        } catch {}
+      }
+
+      // Live updates
+      ["edType","edTitle","edPaper","edSource","edBody"].forEach(id => {
+        document.getElementById(id)?.addEventListener("input", schedulePreview);
+      });
+
+      document.getElementById("edDownload")?.addEventListener("click", () => {
+        const md   = buildMd();
+        const name = editFile ? editFile.split("/").pop()
+          : (document.getElementById("edTitle")?.value||"page")
+              .toLowerCase().replace(/\s+/g,"_").replace(/[^a-z0-9_]/g,"") + ".md";
+        const a = Object.assign(document.createElement("a"), {
+          href: URL.createObjectURL(new Blob([md],{type:"text/markdown"})),
+          download: name
+        });
+        a.click();
+      });
+      document.getElementById("edCopy")?.addEventListener("click", () => {
+        navigator.clipboard.writeText(buildMd());
+      });
+
+      // Push state
+      const url = new URL(window.location);
+      url.searchParams.delete("page");
+      url.searchParams.set("editor","1");
+      editFile ? url.searchParams.set("edit",editFile) : url.searchParams.delete("edit");
+      history.pushState({ editor:true, editFile }, "", url);
+
+      schedulePreview();
+    }
+
+    function buildMd() {
+      const type   = document.getElementById("edType")?.value  || "";
+      const title  = document.getElementById("edTitle")?.value || "";
+      const paper  = document.getElementById("edPaper")?.value || "";
+      const source = document.getElementById("edSource")?.value|| "";
+      const body   = document.getElementById("edBody")?.value  || "";
+      const selected = [...document.querySelectorAll(".chip-toggle.on")].map(b => `  - ${b.dataset.id}`).join("\n");
+
+      const lines = ["---", `title: ${title}`, `type: ${type}`];
+      if (paper)    lines.push(`paper: ${paper}`);
+      if (source)   lines.push(`source: ${source}`);
+      if (selected) lines.push("assumptions:", selected);
+      lines.push("---");
+      return lines.join("\n") + "\n\n" + body;
+    }
+
+    function schedulePreview() {
+      clearTimeout(editorDebounce);
+      editorDebounce = setTimeout(updatePreview, 350);
+    }
+
+    async function updatePreview() {
+      const preview = document.getElementById("edPreview");
+      const rawEl   = document.getElementById("edRaw");
+      if (!preview) return;
+      const md = buildMd();
+      if (rawEl) rawEl.textContent = md;
+      const idx = await loadAssumptionIndex();
+      const { frontmatter, body } = stripFrontmatter(md);
+      const p_ = protectMath(body);
+      preview.innerHTML =
+        renderInfobox(frontmatter, "__editor__", idx) +
+        restoreMath(marked.parse(p_.markdown), p_.math);
+      await typesetMath(preview);
+    }
+
+    // ── Event handlers ────────────────────────────────────────────────
+    backButton.addEventListener("click", () => history.back());
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value;
+      if (currentMarkdownPath && q) {
+        const url = new URL(window.location);
+        url.searchParams.delete("page");
+        history.pushState({}, "", url);
+      }
+      renderHomeDirectory(q);
+    });
+
+    window.addEventListener("popstate", e => {
+      if (e.state?.editor) renderEditorPage(e.state.editFile || null);
+      else {
+        const page = e.state?.page || getParam("page");
+        page ? loadMarkdown(page, false) : renderHomeDirectory();
       }
     });
 
     window.addEventListener("DOMContentLoaded", () => {
-      const page = getPageFromURL();
-      if (page) {
-        loadMarkdown(page, false);
-      } else {
-        renderHomeDirectory();
+      if (hasParam("editor")) renderEditorPage(getParam("edit") || null);
+      else {
+        const page = getParam("page");
+        page ? loadMarkdown(page, false) : renderHomeDirectory();
       }
     });
   </script>

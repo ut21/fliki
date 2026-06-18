@@ -82,3 +82,15 @@ linear-coordinate-maps:
   label: Linear coordinate maps
   page: objects/residual_stream.md
   category: construction
+encoder-only:
+  label: Encoder-only
+  page: objects/encoder_only_transformer.md
+  category: architecture
+arbitrary-precision:
+  label: Arbitrary precision
+  page: objects/arbitrary_precision.md
+  category: precision
+uniform-tc0:
+  label: Uniform TC⁰
+  page: objects/tc0_circuits.md
+  category: complexity
