@@ -2,7 +2,7 @@
 
 A reference wiki for **Formal Language and Neural Networks (FLaNN)** research, focused on the expressive power of transformer architectures.
 
-Browse at: **https://wmerrill.github.io/fliki/**
+Browse at: **https://ut21.github.io/fliki/**
 
 ## What's here
 
